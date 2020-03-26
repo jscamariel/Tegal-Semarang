@@ -1,0 +1,7 @@
+Fitur-Fitur di Website :
+- Mahasiswa UDINUS dapat mengakses DINUS FORUM melali website
+- Mahasiswa UDINUS dapat melakukan Daftar melalui form Sign Up
+- Mahasiswa UDINUS dapat melakukan Login melalui form Sign In
+- Mahasiswa UDINUS dapat membuat thread sesuai dengan kategori yang telah disediakan
+- Mahasiswa UDINUS dapat memberikan like atau dislike dan komentar pada thread yang ada
+- Mahasiswa UDINUS dapat melakukan ganti password melalui fitur Lupa Password

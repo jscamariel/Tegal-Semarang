@@ -1,0 +1,6 @@
+Fitur - Fitur Di Android :
+
+- Mahasiswa UDINUS dapat mengakses DINUS FORUM melalui mobile apps
+- Mahasiswa UDINUS dapat melakukan Sign up atau Login dengan mengisi form sign up yang telah tersedia
+- Mahasiswa UDINUS dapat membuat thread sesuai dengan katagori yang telah di sediakan
+- Mahasiswa UDINUS dapat memberikan like atau dislike dan comment pada thread yang ada  

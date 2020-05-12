@@ -14,8 +14,9 @@ class Olahraga extends CI_Controller{
             $data['olahraga'] = $this->Olahraga_model->cariDataOlahraga();
         }
         $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
         $this->load->view('olahraga/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/rightsidebar');
     }
 
     public function tambah(){
@@ -24,8 +25,9 @@ class Olahraga extends CI_Controller{
         $this->form_validation->set_rules('isi','Isi','required');
         if($this->form_validation->run() == FALSE){
             $this->load->view('templates/header',$data);
+            $this->load->view('templates/sidebar');
             $this->load->view('olahraga/tambah');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/rightsidebar');
         }else{
             $this->Olahraga_model->tambahDataOlahraga();
             $this->session->set_flashdata('flash','Ditambahkan');
@@ -41,11 +43,11 @@ class Olahraga extends CI_Controller{
     }
 
     public function detail($id_thread){
-        $data['judul'] = 'Detail Data Olahraga';
         $data['olahraga'] = $this->Olahraga_model->getOlahragaById($id_thread);
         $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar');
         $this->load->view('olahraga/detail' , $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/rightsidebar');
     }
 
     public function ubah($id_thread){
@@ -55,8 +57,9 @@ class Olahraga extends CI_Controller{
         $this->form_validation->set_rules('isi','Isi','required');
         if($this->form_validation->run() == FALSE){
             $this->load->view('templates/header',$data);
+            $this->load->view('templates/sidebar');
             $this->load->view('olahraga/ubah',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/rightsidebar');
         }else{
             $this->Olahraga_model->ubahDataOlahraga();
             $this->session->set_flashdata('flash','Diubah');

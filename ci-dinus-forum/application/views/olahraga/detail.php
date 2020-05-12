@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-content">
     <row class="mt-3">
         <div class="col-md-6">
         

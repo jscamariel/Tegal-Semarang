@@ -5,7 +5,7 @@
         <div class = "">
             <div class = "">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Data olahraga <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                    Thread <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </div>
@@ -15,19 +15,44 @@
    
    <div class = "">
         <div class = "">
-            <a href = "<?= base_url(); ?>fik/tambah" class="btn btn-primary">Buat Thread Baru</a>
+            <a href = "<?= base_url(); ?>fik/tambah" class="btn btn-primary" id="buat">Buat Thread Baru</a>
         </div>
     </div>
 
-<?php foreach($fik as $f) : ?>
+<?php foreach($fik as $ti) : ?>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Nama MHS</h5>
-            <a class="icofont-rounded-down float-right" href="#"></a>
-            <h6 class="card-subtitle mb-2 text-muted"><?= $f['timestamp']?></h6>
+            <!-- <a class="icofont-rounded-down float-right" href=""></a> -->
+                <a href = "<?= base_url(); ?>fik/hapus/<?= $ti['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
+                <a href = "<?= base_url(); ?>fik/ubah/<?= $ti['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>       
+
+            <h6 class="card-subtitle mb-2 text-muted"><?= $ti['timestamp']?></h6>
             
-            <a href="<?= base_url(); ?>fik/detail/<?= $f['id_thread']; ?>" class="card-link"><?= $f['nama_thread']; ?></a>
+            <a href="<?= base_url(); ?>fik/detail/<?= $ti['id_thread']; ?>" class="card-link"><?= $ti['nama_thread']; ?></a>
         </div>
     </div>
     <?php endforeach; ?>
 </div>
+
+<script !src="">
+    $(document).ready(function ()
+    {
+        $('#form').hide();
+
+        $('#buat').click(function()
+        {
+            $('#form').show();
+            $('#buat').hide();
+            
+
+            $('#cancel').click(function()
+            {
+                $('#form').hide();
+                $('#buat').show();
+            })
+
+        })
+    });
+
+</script>

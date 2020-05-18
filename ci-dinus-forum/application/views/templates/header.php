@@ -10,24 +10,25 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?= base_url();?>assets/img/favicon.png" rel="icon">
+  <link href="<?= base_url();?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="<?= base_url();?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?= base_url();?>assets/css/style.css">
+  <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.js"></script>
 
   <!-- =======================================================
   * Template Name: Company - v2.0.1
@@ -60,15 +61,14 @@
     </div>
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="portfolio.html">Home</a></li>        
-          <li><a href="portfolio.html">Notification</a></li>         
-          <li class="drop-down"><a href="">Profile</a>
+          <li><a href="<?= base_url(); ?>">Home</a></li>        
+          <li><a href="#">Notification</a></li>         
+          <li class="drop-down"><a href="#">Profile</a>
             <ul>             
-              <li><a href="team.html">Akun</a></li>
-              <li><a href="testimonials.html">Privacy & Policy</a></li>
-              <li><a href="testimonials.html">Bahasa</a></li>
-              <li><a href="testimonials.html">Bantuan</a></li>
-              <li><a href="testimonials.html">Logout</a></li>
+              <li><a href="#">Akun</a></li>
+              <li><a href="#">Privacy & Policy</a></li>
+              <li><a href="#">Bantuan</a></li>
+              <li><a href="#">Logout</a></li>
               
             </ul>
           </li>

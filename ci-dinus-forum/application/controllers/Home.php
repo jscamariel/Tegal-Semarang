@@ -5,14 +5,18 @@ class Home extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Home_model');
+        $this->load->model('Berita_model');
+        $this->load->model('Event_model');
     }
 
     public function index()
     {       
         $data['home'] = $this->Home_model->getAllThread();
-        $this->load->view('templates/header', );
-        $this->load->view('templates/sidebar', );
+        $data['berita'] = $this->Berita_model->getAllBerita();
+        $data['event'] = $this->Event_model->getAllEvent();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
         $this->load->view('home/index', $data);
-        $this->load->view('templates/rightsidebar', );
+        $this->load->view('templates/rightsidebar', $data, $data);
     }
 }

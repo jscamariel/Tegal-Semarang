@@ -1,23 +1,33 @@
 
 <!-- Sidebar -->
     <div class="rightsidebar" id="sidebar-wrapper">
-
+    <?php foreach($berita as $br) :  ?>
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Berita</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h3 class="card-title">Berita</h3>
+                    <img src="..." class="card-img-top" alt="...">
+                    <h5 class="card-title"><?= $br['judul']; ?></h5>
+                    <h6 class="card-title"><?= $br['timestamp']; ?></h6>
+                    <p class="card-text"><?= $br['isi']; ?></p>
+                    <a href="#" class="btn btn-primary">Baca Lebih Lanjut</a>
                 </div>
         </div>  
+    <?php endforeach; ?>
 
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <?php foreach($event as $ev) : ?>
                 <div class="card-body">
                     <h5 class="card-title">Event Yang Akan Datang</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <img src="..." class="card-img-top" alt="...">
+                    <h5 class="card-title"><?= $ev['judul']; ?></h5>           
+                    <h6 class="card-title"><?= $ev['timestamp']; ?></h6>
+                    <p class="card-text"><?= $ev['isi']; ?></p>
+                    <a href="#" class="btn btn-primary">Baca Lebih Lanjut</a>
                 </div>
+            <?php endforeach;?>
         </div>
     </div>
 </div>
+
+</body>
+</html>

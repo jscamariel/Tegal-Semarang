@@ -4,7 +4,7 @@
         <div class = "">
             <div class = "">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Data Olahraga <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                    Data olahraga <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class = "">
+    <div class ="">
         <div class = "">
             <form action="" method="post">
                 <div class="input-group">

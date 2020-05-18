@@ -4,7 +4,7 @@
         <div class = "">
             <div class = "">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Data Olahraga <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                    Data Game <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </div>
@@ -14,7 +14,7 @@
 
     <div class = "">
         <div class = "">
-            <a href = "<?= base_url(); ?>olahraga/tambah" class="btn btn-primary">Buat Thread Baru</a>
+            <a href = "<?= base_url(); ?>game/tambah" class="btn btn-primary">Buat Thread Baru</a>
         </div>
     </div>
 
@@ -34,19 +34,19 @@
 
     <div class="">
         <div class="">
-            <h3>Topik dalam Olahraga</h3>
-                <?php if(empty($olahraga)): ?>
+            <h3>Topik dalam Game</h3>
+                <?php if(empty($game)): ?>
                     <div class="alert alert-danger" role="alert">
                         Data tidak ditemukan!
                     </div>
                 <?php endif; ?>
                 <ul class="list-group">
-                    <?php foreach($olahraga as $or) : ?>
+                    <?php foreach($game as $or) : ?>
                         <li class="list-group-item">
                             <?= $or['nama_thread']; ?> 
-                            <a href = "<?= base_url(); ?>olahraga/hapus/<?= $or['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
-                            <a href = "<?= base_url(); ?>olahraga/detail/<?= $or['id_thread']; ?>" class = "badge badge-primary float-right">Detail</a>
-                            <a href = "<?= base_url(); ?>olahraga/ubah/<?= $or['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>
+                            <a href = "<?= base_url(); ?>game/hapus/<?= $or['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
+                            <a href = "<?= base_url(); ?>game/detail/<?= $or['id_thread']; ?>" class = "badge badge-primary float-right">Detail</a>
+                            <a href = "<?= base_url(); ?>game/ubah/<?= $or['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>
                             
                         </li>
                     <?php endforeach; ?>

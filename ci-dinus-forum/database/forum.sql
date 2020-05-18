@@ -50,7 +50,7 @@ CREATE TABLE `forum_olahraga` (
   `like` int(11) NOT NULL,
   `dislike` int(11) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3;
 
 --
 -- Dumping data for table `forum_olahraga`

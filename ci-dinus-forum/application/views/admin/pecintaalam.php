@@ -17,7 +17,7 @@
                 <th scope="row"><?= $ad['id_thread'];?></th>
                 <td><?= $ad['nama_thread'];?></td>
                 <td><?= $ad['isi'];?></td>
-                <td><?= $ad['timestamp'];?></td><td><a href = "<?= base_url(); ?>admin/admin/hapusIndex/<?= $ad['id_thread']; ?>" class = "badge badge-danger" onclick="return confirm('Yakin?');">Hapus</a></td>
+                <td><?= $ad['timestamp'];?></td><td><a href = "<?= base_url(); ?>admin/admin/hapusPecintaalam/<?= $ad['id_thread']; ?>" class = "badge badge-danger" onclick="return confirm('Yakin?');">Hapus</a></td>
                 </tr>
             </tbody>
         <?php endforeach; ?>

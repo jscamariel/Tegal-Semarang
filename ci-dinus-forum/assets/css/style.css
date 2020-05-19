@@ -19,6 +19,22 @@ body {
   margin-top: 1.5rem;
 }
 
+#card-admin{
+  width: auto;
+}
+
+#th-style{
+  text-align: center;
+}
+
+.container-admin{
+  width: auto;
+  margin-top: 5rem;
+  margin-right: 10rem;
+  margin-left: 20rem;
+  position: absolute;
+}
+
 .container-content{
   width: 45rem;
   margin-top: 5rem;

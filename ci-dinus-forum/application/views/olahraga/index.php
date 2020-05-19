@@ -40,45 +40,20 @@
                         Data tidak ditemukan!
                     </div>
                 <?php endif; ?>
-                <ul class="list-group">
-                    <?php foreach($olahraga as $or) : ?>
-                        <li class="list-group-item">
-                            <?= $or['nama_thread']; ?> 
-                            <a href = "<?= base_url(); ?>olahraga/hapus/<?= $or['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
-                            <a href = "<?= base_url(); ?>olahraga/detail/<?= $or['id_thread']; ?>" class = "badge badge-primary float-right">Detail</a>
-                            <a href = "<?= base_url(); ?>olahraga/ubah/<?= $or['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>
-                            
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
         </div>
     </div>
 
+    <?php foreach($olahraga as $or) : ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Nama</h5>
-            <h6 class="card-subtitle mb-2 text-muted">NIM A11.2017.10xxx</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <h5 class="card-title">Nama MHS</h5>
+            
+            <a href = "<?= base_url(); ?>olahraga/hapus/<?= $or['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
+            <a href = "<?= base_url(); ?>olahraga/ubah/<?= $or['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>
+            <h6 class="card-subtitle mb-2 text-muted"><?= $or['timestamp']?></h6>
+            
+            <a href="<?= base_url(); ?>olahraga/detail/<?= $or['id_thread']; ?>" class="card-link"><?= $or['nama_thread']; ?></a>
         </div>
     </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Nama</h5>
-            <h6 class="card-subtitle mb-2 text-muted">NIM A11.2017.10xxx</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Nama</h5>
-            <h6 class="card-subtitle mb-2 text-muted">NIM A11.2017.10xxx</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
-    </div>
+    <?php endforeach; ?>
 </div>

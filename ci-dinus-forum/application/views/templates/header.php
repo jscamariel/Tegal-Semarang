@@ -47,6 +47,27 @@
       <h1 class="logo mr-auto"><a href="<?= base_url(); ?>"><span text-align="left">DINUS</span>Forum</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <?php if($this->session->userdata('logged_in')) : ?>
+          <!-- Might add something here -->
+      <?php else : ?>
+        <?php
+            $attributes = array('class' => 'pure-form top-login', 'id' => 'login-form');
+            echo form_open('/login', $attributes); 
+          ?>
+          
+            <fieldset>
+              <div class="input-group">
+                <input class="form-control" id = "username" name = "username" type = "text" placeholder = "Username" value="<?php echo set_value('username'); ?>">
+                <input class="form-control" id = "password" name = "password" type = "password" placeholder = "Password" value="<?php echo set_value('password'); ?>">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary icofont search">Sign in</button>
+                </div>
+              </div>
+            </fieldset>
+          
+        </form>
+      <?php ENDIF; ?>
+      
       <div class = "">
         <div class = "">
             <form action="" method="post">
@@ -62,16 +83,21 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li><a href="<?= base_url(); ?>">Home</a></li>        
-          <li><a href="#">Notification</a></li>         
+          <li><a href="#">Notification</a></li>      
+          <?php if($this->session->userdata('logged_in')) : ?>
+            <li class = "welcome">Welcome <?php echo $this->session->userdata('username'); ?>.</li>   
           <li class="drop-down"><a href="#">Profile</a>
             <ul>             
-              <li><a href="#">Akun</a></li>
+              <li><a href="<?= base_url(); ?>account">Akun</a></li>
               <li><a href="#">Privacy & Policy</a></li>
               <li><a href="#">Bantuan</a></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="<?= base_url(); ?>logout">Logout</a></li>
               
             </ul>
           </li>
+          <?php else : ?>
+            <li><a href="<?= base_url(); ?>register">Sign Up</a></li>
+          <?php ENDIF; ?>
         </ul>
       </nav><!-- .nav-menu -->
 

@@ -17,7 +17,7 @@
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address...">
+                                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Enter Username ...">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">

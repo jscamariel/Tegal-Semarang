@@ -37,7 +37,7 @@
                             <form class="user">
 
                                 <div class="form-group">
-                                    <input type="name" class="form-control form-control-user" id="name" name="name" placeholder="Full Name">
+                                    <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username">
                                 </div>
 
                                 <div class="form-group">

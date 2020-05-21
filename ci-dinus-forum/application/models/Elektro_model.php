@@ -1,9 +1,19 @@
 <?php
+use GuzzleHttp\Client;
 
 class Elektro_model extends CI_model
 {
+    private $_client;
+    public function __construct(){
+        $this->_client = new Client([
+            'base_uri' => 'http://localhost/ci-dinus-forum-server/api/'
+        ]);
+    }
+
     public function getAllElektro(){
-        return $this->db->get('forum_elektro')->result_array();  
+        $response = $this->_client->request('GET','elektro');
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result['data'];
     }
 
     public function tambahDataElektro(){
@@ -12,27 +22,47 @@ class Elektro_model extends CI_model
             'isi' => $this->input->post('isi',true)
         ];
     
-        $this->db->insert('forum_elektro', $data);
-        //print_r($this->db->error());
+        $response = $this->_client->request('POST','elektro',[
+            'form_params' => $data
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result;
     }
 
     public function getElektroById($id_thread){
-        return $this->db->get_where('forum_elektro',['id_thread'=> $id_thread])->row_array();
+        $response = $this->_client->request('GET','elektro',[
+            'query' => [
+                'id_thread' => $id_thread
+            ]
+        ]);
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result['data'][0];
     }
 
     public function hapusDataElektro($id_thread){
-        $this->db->where('id_thread',$id_thread);
-        $this->db->delete('forum_elektro');
+        $response = $this->_client->request('DELETE','elektro',[
+            'form_params' => [
+                'id_thread' => $id_thread
+            ]
+        ]);
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result ;
     }
 
     public function ubahDataElektro(){
         $data = [
             'nama_thread' => $this->input->post('nama_thread',true),
-            'isi' => $this->input->post('isi',true)
+            'isi' => $this->input->post('isi',true),
+            'id_thread' => $this->input->post('id_thread',true)
         ];
     
-        $this->db->where('id_thread', $this->input->post('id_thread'));
-        $this->db->update('forum_elektro',$data);
+        $response = $this->_client->request('PUT','elektro',[
+            'form_params' => $data
+        ]);
+
+        $result = json_decode($response->getBody()->getContents(),true);
+        return $result;
     }
 
 }

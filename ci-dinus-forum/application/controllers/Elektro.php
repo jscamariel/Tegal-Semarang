@@ -1,3 +1,4 @@
+
 <?php
 
 class Elektro extends CI_Controller
@@ -37,9 +38,10 @@ class Elektro extends CI_Controller
         $this->load->view('templates/rightsidebar', $data, $data);
     }
 
+   
+    
     public function tambah()
-    {
-        $data['judul'] = 'Buat Thread Baru';
+    {      
         $this->form_validation->set_rules('nama_thread','Nama Thread','required');
         $this->form_validation->set_rules('isi','Isi','required');
         $data['berita'] = $this->Berita_model->getAllBerita();
@@ -51,7 +53,12 @@ class Elektro extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         }else
         {
-            $this->Elektro_model->tambahDataElektro();
+            $insert=[
+                'username' =>  $this->session->userdata('username'),
+                'nama_thread' => $this->input->post('nama_thread',true),
+                'isi' => $this->input->post('isi',true)
+            ];
+            $this->Elektro_model->tambahDataElektro($insert);
             $this->session->set_flashdata('flash','Dibuat');
             redirect('elektro');
         }

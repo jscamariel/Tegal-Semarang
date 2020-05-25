@@ -46,10 +46,41 @@ class Pecintahewan extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         }else
         {
-            $this->Pecintahewan_model->tambahDataPecintahewan();
+            $insert=[
+                'username' =>  $this->session->userdata('username'),
+                'nama_thread' => $this->input->post('nama_thread',true),
+                'isi' => $this->input->post('isi',true)
+            ];
+            $this->Pecintahewan_model->tambahDataPecintahewan($insert);
             $this->session->set_flashdata('flash','Ditambahkan');
             redirect('pecintahewan');
         }
+    }
+
+    public function ubah($id_thread){
+        $data['judul'] = 'Ubah Thread';
+        $data['pecintahewan'] = $this->Pecintahewan_model->getPecintahewanById($id_thread);
+        $this->form_validation->set_rules('nama_thread','Nama Thread','required');
+        $this->form_validation->set_rules('isi','Isi','required');
+        $data['berita'] = $this->Berita_model->getAllBerita();
+        $data['event'] = $this->Event_model->getAllEvent();
+        if($this->form_validation->run() == FALSE){
+            $this->load->view('templates/header',$data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('pecintahewan/ubah',$data);
+            $this->load->view('templates/rightsidebar', $data, $data);
+        }else{
+            $this->Pecintahewan_model->ubahDataPecintahewan();
+            $this->session->set_flashdata('flash','Diubah');
+            redirect('pecintahewan');
+        }
+        
+    }
+
+    public function hapus($id_thread){
+        $this->Pecintahewan_model->hapusDataPecintahewan($id_thread);
+        $this->session->set_flashdata('flash','Dihapus');
+        redirect('pecintahewan');
     }
         
 }

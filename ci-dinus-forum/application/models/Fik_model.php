@@ -3,16 +3,16 @@
 class Fik_model extends CI_model
 {
     public function getAllFIk(){
-        return $this->db->get('forum_fik')->result_array();  
+        $this->db->select('forum_fik.*');
+        $this->db->from('forum_fik');
+        $this->db->join('user', 'user.username = forum_fik.username');
+        $query = $this->db->get();
+        return $query->result_array(); 
     }
 
-    public function tambahDataFik(){
-        $data = [
-            'nama_thread' => $this->input->post('nama_thread',true),
-            'isi' => $this->input->post('isi',true)
-        ];
+    public function tambahDataFik($insert){
     
-        $this->db->insert('forum_fik', $data);
+        $this->db->insert('forum_fik', $insert);
         //print_r($this->db->error());
     }
 

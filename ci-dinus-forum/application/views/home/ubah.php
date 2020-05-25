@@ -8,15 +8,15 @@
                 <div class="card-body">
                 
                     <form action="" method="post">
-                        <input type="hidden" name="id_thread" value="<?=$game['id_thread'];?>">
+                        <input type="hidden" name="id_thread" value="<?=$home['id_thread'];?>">
                         <div class="form-group">
                             <label for="nama_thread">Nama Thread</label>
-                            <input type = "text" name="nama_thread" class="form-control" id="nama_thread" value="<?= $game['nama_thread'];?>">
+                            <input type = "text" name="nama_thread" class="form-control" id="nama_thread" value="<?= $home['nama_thread'];?>">
                             <small class="form-text text-danger"><?= form_error('nama_thread'); ?></small>
                         </div>
                         <div class="form-group">
                             <label for="isi">Isi</label>
-                            <input type = "text" name="isi" class="form-control" id="isi" value="<?= $game['isi'];?>">
+                            <input type = "text" name="isi" class="form-control" id="isi" value="<?= $home['isi'];?>">
                             <small class="form-text text-danger"><?= form_error('isi'); ?></small>
                         </div>
 

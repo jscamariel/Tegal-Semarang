@@ -83,10 +83,10 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li><a href="<?= base_url(); ?>">Home</a></li>        
-          <li><a href="#">Notification</a></li>      
           <?php if($this->session->userdata('logged_in')) : ?>
+             <li><a href="#">Notification</a></li>      
             <li class = "welcome">Welcome <?php echo $this->session->userdata('username'); ?>.</li>   
-          <li class="drop-down"><a href="#">Profile</a>
+          <li class="drop-down"><a href="#"><?php echo $this->session->userdata('username'); ?></a>
             <ul>             
               <li><a href="<?= base_url(); ?>account">Akun</a></li>
               <li><a href="#">Privacy & Policy</a></li>

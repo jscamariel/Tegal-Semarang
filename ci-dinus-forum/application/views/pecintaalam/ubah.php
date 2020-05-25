@@ -1,6 +1,5 @@
-<div class="container">
-
-    <div class="row-mt-3">
+<div class="container-content">
+    <div class="mt-3">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
@@ -25,9 +24,8 @@
                     </form>
                 </div>
             </div>
-
-            
         </div>
     </div>
+        
 
 </div>

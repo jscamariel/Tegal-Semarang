@@ -2,16 +2,16 @@
 
 class Olahraga_model extends CI_model{
     public function getAllOlahraga(){
-        return $this->db->get('forum_olahraga')->result_array();  
+        $this->db->select('forum_olahraga.*');
+        $this->db->from('forum_olahraga');
+        $this->db->join('user', 'user.username =  forum_olahraga.username');
+        $query = $this->db->get();
+        return $query->result_array(); 
     }
 
-    public function tambahDataOlahraga(){
-        $data = [
-            'nama_thread' => $this->input->post('nama_thread',true),
-            'isi' => $this->input->post('isi',true)
-        ];
+    public function tambahDataOlahraga($insert){
     
-        $this->db->insert('forum_olahraga', $data);
+        $this->db->insert('forum_olahraga', $insert);
     }
 
     public function hapusDataOlahraga($id_thread){

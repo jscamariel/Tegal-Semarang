@@ -8,6 +8,33 @@ class Admin extends CI_controller
         $this->load->model('admin/Admin_model');
     }
 
+    // Fungsi untuk Admin kelola Akun
+    public function akun()
+    {
+        $data['admin'] = $this->Admin_model->getAllUser();
+        $this->load->view('admin/templates/header');
+        $this->load->view('admin/templates/sidebar');
+        $this->load->view('admin/akun', $data);
+    }
+
+    // Fungsi untuk Admin kelola Berita
+    public function berita()
+    {
+        $data['admin'] = $this->Admin_model->getAllBerita();
+        $this->load->view('admin/templates/header');
+        $this->load->view('admin/templates/sidebar');
+        $this->load->view('admin/berita', $data);
+    }
+
+    // Fungsi untuk Admin kelola Event
+    public function event()
+    {
+        $data['admin'] = $this->Admin_model->getAllevent();
+        $this->load->view('admin/templates/header');
+        $this->load->view('admin/templates/sidebar');
+        $this->load->view('admin/event', $data);
+    }
+
     // Fungsi untuk Forum bagian index/home 
     public function index()
     {

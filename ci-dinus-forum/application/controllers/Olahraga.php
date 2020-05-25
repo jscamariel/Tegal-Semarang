@@ -35,7 +35,12 @@ class Olahraga extends CI_Controller{
             $this->load->view('olahraga/tambah');
             $this->load->view('templates/rightsidebar', $data, $data);
         }else{
-            $this->Olahraga_model->tambahDataOlahraga();
+            $insert=[
+                'username' =>  $this->session->userdata('username'),
+                'nama_thread' => $this->input->post('nama_thread',true),
+                'isi' => $this->input->post('isi',true)
+            ];
+            $this->Olahraga_model->tambahDataOlahraga($insert);
             $this->session->set_flashdata('flash','Ditambahkan');
             redirect('olahraga');
         }

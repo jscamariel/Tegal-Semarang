@@ -13,18 +13,26 @@
         </div>
     <?php endif; ?>
    
+    <?php if($this->session->userdata('logged_in')) : ?>
    <div class = "">
         <div class = "">
             <a href = "<?= base_url(); ?>feb/tambah" class="btn btn-primary">Buat Thread Baru</a>
         </div>
     </div>
+    <?php endif; ?>
 
 <?php foreach($feb as $fe) : ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Nama MHS</h5>
-            <a class="icofont-rounded-down float-right" href="#"></a>
-            <h6 class="card-subtitle mb-2 text-muted"><?= $fe['timestamp']?></h6>
+            <h5 class="card-title"><?= $fe['username'];?></h5>
+            <?php if($this->session->userdata('username') !=  $fe['username']) : ?>
+                
+            <?php else : ?>
+                <a href = "<?= base_url(); ?>feb/hapus/<?= $fe['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
+                <a href = "<?= base_url(); ?>feb/ubah/<?= $fe['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>       
+
+            <?php endif; ?>
+            <h6 class="card-subtitle mb-2 text-muted"><?= $fe['timestamp'];?></h6>
             
             <a href="<?= base_url(); ?>feb/detail/<?= $fe['id_thread']; ?>" class="card-link"><?= $fe['nama_thread']; ?></a>
         </div>

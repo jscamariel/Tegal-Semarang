@@ -1,10 +1,11 @@
 <div class="container-admin">
-    <h3>Beranda Forum</h3>
+    <h3>Forum Kategori Fakultas Teknik Elektro</h3>
     <div class="card" id="card-admin">
         <table class="table">
         <thead>
             <tr>
             <th scope="col">ID</th>
+            <th scope="col">Username</th>
             <th scope="col">Nama Thread</th>
             <th scope="col">Isi Thread</th>
             <th scope="col">TimeStamp</th>
@@ -15,6 +16,7 @@
             <tbody>
                 <tr>
                 <th scope="row"><?= $ad['id_thread'];?></th>
+                <td><?= $ad['username'];?></td>
                 <td><?= $ad['nama_thread'];?></td>
                 <td><?= $ad['isi'];?></td>
                 <td><?= $ad['timestamp'];?></td>

@@ -2,6 +2,24 @@
 
 class Admin_model extends CI_model
 {
+    // Admin Model untuk Kelola Akun
+    public function getAllUser()
+    {
+        return $this->db->get('user')->result_array();
+    }
+    
+    // Admin Model untuk Kelola Akun
+    public function getAllBerita()
+    {
+        return $this->db->get('berita')->result_array();
+    }
+    
+    // Admin Model untuk Kelola Akun
+    public function getAllEvent()
+    {
+        return $this->db->get('event')->result_array();
+    }
+
     // Admin Model untuk Kategori Beranda
     public function getAllThread()
     {

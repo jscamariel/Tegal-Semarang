@@ -1,11 +1,11 @@
 <div class="container-content">
-    <h2>Fakultas Ekonomi dan Bisnis</h2>
+    <h2>Fakultas Ilmu Budaya</h2>
 
 <?php if( $this->session->flashdata('flash')) : ?>
         <div class = "">
             <div class = "">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Data olahraga <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
+                    Thread <strong>Berhasil</strong> <?= $this->session->flashdata('flash'); ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </div>
@@ -13,17 +13,25 @@
         </div>
     <?php endif; ?>
    
+    <?php if($this->session->userdata('logged_in')) : ?>
    <div class = "">
         <div class = "">
             <a href = "<?= base_url(); ?>fib/tambah" class="btn btn-primary">Buat Thread Baru</a>
         </div>
     </div>
+    <?php endif; ?>
 
 <?php foreach($fib as $fi) : ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Nama MHS</h5>
-            <a class="icofont-rounded-down float-right" href="#"></a>
+            <h5 class="card-title"><?= $fi['username']; ?></h5>
+                <?php if($this->session->userdata('username') !=  $fi['username']) : ?>
+                
+                <?php else : ?>
+                    <a href = "<?= base_url(); ?>fib/hapus/<?= $fi['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
+                    <a href = "<?= base_url(); ?>fib/ubah/<?= $fi['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>       
+                <?php endif ;?>
+
             <h6 class="card-subtitle mb-2 text-muted"><?= $fi['timestamp']?></h6>
             
             <a href="<?= base_url(); ?>fib/detail/<?= $fi['id_thread']; ?>" class="card-link"><?= $fi['nama_thread']; ?></a>

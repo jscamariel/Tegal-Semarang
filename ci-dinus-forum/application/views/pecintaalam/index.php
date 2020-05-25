@@ -13,17 +13,27 @@
         </div>
     <?php endif; ?>
    
-   <div class = "">
+    <?php if($this->session->userdata('logged_in')) : ?>
+    <div class = "">
         <div class = "">
             <a href = "<?= base_url(); ?>pecintaalam/tambah" class="btn btn-primary">Buat Thread Baru</a>
         </div>
     </div>
+    <?php endif; ?>
 
-<?php foreach($pecintaalam as $pa) : ?>
+
+    <?php foreach($pecintaalam as $pa) : ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Nama MHS</h5>
-            <a class="icofont-rounded-down float-right" href="#"></a>
+            <h5 class="card-title"><?= $pa['username']?></h5>
+            
+            <?php if($this->session->userdata('username') !=  $pa['username']) : ?>    
+
+            <?php else : ?>
+                <a href = "<?= base_url(); ?>pecintaalam/hapus/<?= $pa['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
+                <a href = "<?= base_url(); ?>pecintaalam/ubah/<?= $pa['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>       
+            <?php endif ;?>
+
             <h6 class="card-subtitle mb-2 text-muted"><?= $pa['timestamp']?></h6>
             
             <a href="<?= base_url(); ?>pecintaalam/detail/<?= $pa['id_thread']; ?>" class="card-link"><?= $pa['nama_thread']; ?></a>

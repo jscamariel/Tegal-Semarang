@@ -13,20 +13,26 @@
         </div>
     <?php endif; ?>
    
+    <?php if($this->session->userdata('logged_in')) : ?>
    <div class = "">
         <div class = "">
             <a href = "<?= base_url(); ?>elektro/tambah" class="btn btn-primary" id="buat">Buat Thread Baru</a>
         </div>
     </div>
+<?php endif; ?>
 
 <?php foreach($elektro as $el) : ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Nama MHS</h5>
+            <h5 class="card-title"><?= $el['username']; ?></h5>
             <!-- <a class="icofont-rounded-down float-right" href=""></a> -->
+            <?php if($this->session->userdata('username') !=  $el['username']) : ?>
+                
+            <?php else : ?>
                 <a href = "<?= base_url(); ?>elektro/hapus/<?= $el['id_thread']; ?>" class = "badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
                 <a href = "<?= base_url(); ?>elektro/ubah/<?= $el['id_thread']; ?>" class = "badge badge-warning float-right">Ubah</a>       
-
+            <?php endif ;?>
+            
             <h6 class="card-subtitle mb-2 text-muted"><?= $el['timestamp']?></h6>
             
             <a href="<?= base_url(); ?>elektro/detail/<?= $el['id_thread']; ?>" class="card-link"><?= $el['nama_thread']; ?></a>

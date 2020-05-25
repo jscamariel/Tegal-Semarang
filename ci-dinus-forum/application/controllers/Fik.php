@@ -51,7 +51,12 @@ class Fik extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         }else
         {
-            $this->Fik_model->tambahDataFik();
+            $insert=[
+                'username' =>  $this->session->userdata('username'),
+                'nama_thread' => $this->input->post('nama_thread',true),
+                'isi' => $this->input->post('isi',true)
+            ];
+            $this->Fik_model->tambahDataFik($insert);
             $this->session->set_flashdata('flash','Dibuat');
             redirect('fik');
         }

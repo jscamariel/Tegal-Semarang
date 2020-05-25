@@ -6,6 +6,9 @@
   <div class="sidebar-heading">Dashboard</div>
 
     <div class="list-group list-group-flush">
+      <a href="<?= base_url(); ?>admin/admin/akun" class="list-group-item list-group-item-action bg-light icofont-home">Akun</a>
+      <a href="<?= base_url(); ?>admin/admin/berita" class="list-group-item list-group-item-action bg-light icofont-game-controller">Berita</a>
+      <a href="<?= base_url(); ?>admin/admin/event" class="list-group-item list-group-item-action bg-light icofont-game-controller">Event</a>
       <a href="<?= base_url(); ?>admin/admin/index" class="list-group-item list-group-item-action bg-light icofont-home">Beranda</a>
       <a href="<?= base_url(); ?>admin/admin/elektro" class="list-group-item list-group-item-action bg-light icofont-network-tower">Teknik Elektro</a>
       <a href="<?= base_url(); ?>admin/admin/fik" class="list-group-item list-group-item-action bg-light icofont-computer">Teknik Informatika</a>

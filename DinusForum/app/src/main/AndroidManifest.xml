@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dinusforum">
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+=======
+
+>>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

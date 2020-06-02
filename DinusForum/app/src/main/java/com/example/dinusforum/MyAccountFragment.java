@@ -1,12 +1,16 @@
 package com.example.dinusforum;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
+=======
+>>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,11 +31,17 @@ import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+=======
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+>>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
+<<<<<<< HEAD
 
 public class MyAccountFragment extends Fragment {
 
@@ -41,6 +51,10 @@ public class MyAccountFragment extends Fragment {
     Context context;
     View view ;
 
+=======
+public class MyAccountFragment extends Fragment {
+
+>>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
     public MyAccountFragment() {
         // Required empty public constructor
     }
@@ -49,6 +63,7 @@ public class MyAccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         //inflater = LayoutInflater.from(requireParentFragment().getContext());
 
         // Inflate the layout for this fragment
@@ -105,5 +120,9 @@ public class MyAccountFragment extends Fragment {
 
     private  void showMessage(String message){
         Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+=======
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_my_account, container, false);
+>>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
     }
 }

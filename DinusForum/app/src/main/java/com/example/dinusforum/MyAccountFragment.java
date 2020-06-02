@@ -1,17 +1,9 @@
 package com.example.dinusforum;
 
-<<<<<<< HEAD
-import android.content.Context;
-import android.content.Intent;
-import android.nfc.Tag;
-=======
->>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
-import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 
-<<<<<<< HEAD
-import android.util.Log;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +23,14 @@ import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-=======
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
->>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-<<<<<<< HEAD
 
 public class MyAccountFragment extends Fragment {
 
@@ -51,19 +40,9 @@ public class MyAccountFragment extends Fragment {
     Context context;
     View view ;
 
-=======
-public class MyAccountFragment extends Fragment {
-
->>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
-    public MyAccountFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-<<<<<<< HEAD
         //inflater = LayoutInflater.from(requireParentFragment().getContext());
 
         // Inflate the layout for this fragment
@@ -75,54 +54,10 @@ public class MyAccountFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userLogin(editTextUsername,editTextPassword);
+                //userLogin(editTextUsername,editTextPassword);
             }
         });
-
-
         return  view;
     }
 
-    private void userLogin(EditText editTextUsername, EditText editTextPassword){
-        AndroidNetworking.post("http://192.168.100.6/ci-dinus-forum/user/login")
-                .addBodyParameter("username",editTextUsername.getText().toString())
-                .addBodyParameter("password",editTextPassword.getText().toString())
-                .setTag(context)
-                .setPriority(Priority.HIGH)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try{
-                            Boolean status = response.getBoolean("status");
-                            String message = response.getString("message");
-                            if(status){
-                                JSONArray ja = response.getJSONArray("response");
-                                Log.d("username",ja.getJSONObject(0).getString("username"));
-                                Log.d("email",ja.getJSONObject(0).getString("email"));
-                                showMessage(message);
-                            }else {
-                                showMessage(message);
-                            }
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-
-                    }
-                });
-
-
-    }
-
-    private  void showMessage(String message){
-        Toast.makeText(context,message,Toast.LENGTH_LONG).show();
-=======
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_account, container, false);
->>>>>>> 482bfff6ae479bd6bf88a36823ceda3b1300ab25
-    }
 }

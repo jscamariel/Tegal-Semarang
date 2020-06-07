@@ -1,6 +1,6 @@
 
 <!-- Sidebar -->
-    <div class="rightsidebar" id="sidebar-wrapper">
+    <div class="rightsidebar" id="">
     <?php foreach($berita as $br) :  ?>
         <div class="card" style="width: 18rem;">
                 <div class="card-body">

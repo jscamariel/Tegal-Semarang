@@ -6,6 +6,15 @@ class Admin extends CI_controller
     {
         parent::__construct();
         $this->load->model('admin/Admin_model');
+
+        if ($this->session->userdata('username') == FALSE) {
+            $this->session->set_flashdata('error', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Silahkan Login Terlebih Dahulu
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('auth');
+        }
     }
 
     // Fungsi untuk Admin kelola Akun
@@ -47,7 +56,7 @@ class Admin extends CI_controller
     public function hapusIndex($id_thread)
     {
         $this->Admin_model->hapusIndex($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/index');
     }
 
@@ -62,7 +71,7 @@ class Admin extends CI_controller
     public function hapusElektro($id_thread)
     {
         $this->Admin_model->hapusDataElektro($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/elektro');
     }
 
@@ -78,7 +87,7 @@ class Admin extends CI_controller
     public function hapusFik($id_thread)
     {
         $this->Admin_model->hapusDataFik($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/fik');
     }
 
@@ -94,7 +103,7 @@ class Admin extends CI_controller
     public function hapusFeb($id_thread)
     {
         $this->Admin_model->hapusDataFeb($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/feb');
     }
 
@@ -110,7 +119,7 @@ class Admin extends CI_controller
     public function hapusFib($id_thread)
     {
         $this->Admin_model->hapusDataFib($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/fib');
     }
 
@@ -126,7 +135,7 @@ class Admin extends CI_controller
     public function hapusFkes($id_thread)
     {
         $this->Admin_model->hapusDataFkes($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/fkes');
     }
 
@@ -142,7 +151,7 @@ class Admin extends CI_controller
     public function hapusOlahraga($id_thread)
     {
         $this->Admin_model->hapusDataOlahraga($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/olahraga');
     }
 
@@ -158,7 +167,7 @@ class Admin extends CI_controller
     public function hapusOtomotif($id_thread)
     {
         $this->Admin_model->hapusDataOtomotif($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/otomotif');
     }
 
@@ -174,7 +183,7 @@ class Admin extends CI_controller
     public function hapusPecintaalam($id_thread)
     {
         $this->Admin_model->hapusDataPecintaalam($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/pecintaalam');
     }
 
@@ -186,11 +195,11 @@ class Admin extends CI_controller
         $this->load->view('admin/templates/sidebar');
         $this->load->view('admin/pecintahewan', $data);
     }
-     
+
     public function hapusPecintahewan($id_thread)
     {
         $this->Admin_model->hapusDataPecintahewan($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/pecintahewan');
     }
 
@@ -206,7 +215,7 @@ class Admin extends CI_controller
     public function hapusFotografi($id_thread)
     {
         $this->Admin_model->hapusDataFotografi($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/fotografi');
     }
 
@@ -222,7 +231,7 @@ class Admin extends CI_controller
     public function hapusGame($id_thread)
     {
         $this->Admin_model->hapusDataGame($id_thread);
-        $this->session->set_flashdata('flashh','Dihapus');
+        $this->session->set_flashdata('flashh', 'Dihapus');
         redirect('admin/admin/game');
     }
 }

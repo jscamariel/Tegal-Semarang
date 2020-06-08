@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2020 at 02:30 PM
+-- Generation Time: Jun 08, 2020 at 07:50 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -41,7 +41,9 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `gambar`, `judul`, `isi`, `timestamp`) VALUES
-(8, 'Aplikasi_Terbaik_Untuk_Mencari_Suku_Cadang_mobil4.jpg', 'Maraknya Onderdil KW', 'bikin robot keren tapi susah tapi keren sih', '2020-06-08 07:30:07');
+(8, 'Aplikasi_Terbaik_Untuk_Mencari_Suku_Cadang_mobil4.jpg', 'Maraknya Onderdil KW', 'bikin robot keren tapi susah tapi keren sih', '2020-06-08 07:30:07'),
+(10, 'download1.png', 'Python', 'ular', '2020-06-08 12:59:59'),
+(13, 'udinus.jpg', 'Dinus Inside', 'Dinus Inside', '2020-06-08 13:29:18');
 
 -- --------------------------------------------------------
 
@@ -64,7 +66,9 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `gambar`, `judul`, `isi`, `date`, `time`, `timestamp`) VALUES
-(7, 'download4.png', 'Seminar Pemrograman Python', 'Belajar Data Scients Menggunakan bahasa python', '2020-07-11', '12:30:00', '2020-06-08 10:15:50');
+(7, 'download4.png', 'Seminar Pemrograman Python', 'Belajar Data Scients Menggunakan bahasa python', '2020-07-11', '12:30:00', '2020-06-08 10:15:50'),
+(8, 'dslr-dpa-ae5662bbba7e5c58f34f8988b8d6850b_600x400.jpg', 'Seminar Fotografi ', 'Fotografi', '2020-07-09', '13:30:00', '2020-06-08 13:16:57'),
+(9, 'udinus.jpg', 'Wisuda angkatan 2019/2020', 'wisuda bulan oktober', '2020-10-08', '09:33:00', '2020-06-08 15:33:21');
 
 -- --------------------------------------------------------
 
@@ -88,7 +92,8 @@ CREATE TABLE `forum_elektro` (
 --
 
 INSERT INTO `forum_elektro` (`id_thread`, `username`, `nama_thread`, `isi`, `gambar`, `isi_komentar`, `status_komentar`, `timestamp`) VALUES
-(26, 'lala', 'Arduino project', 'bikin robot keren tapi susah tapi keren sih', '515b4656ce395f8a380000001.png', '', '', '2020-06-08 10:59:13');
+(26, 'lala', 'Arduino project', 'bikin robot keren tapi susah tapi keren sih', '515b4656ce395f8a380000001.png', '', '', '2020-06-08 10:59:13'),
+(27, 'lala', 'Mikrotik', 'main main sama kabel mikrotik', 'original.jpg', '', '', '2020-06-08 17:05:20');
 
 -- --------------------------------------------------------
 
@@ -334,7 +339,8 @@ CREATE TABLE `home` (
 
 INSERT INTO `home` (`id_thread`, `username`, `nama_thread`, `isi`, `gambar`, `gambar_profile`, `timestamp`) VALUES
 (13, 'banjaran', 'Jaringan Komputer', 'coba coba coba coba terus', '5225z8y.jpg', '', '2020-06-07 16:44:37'),
-(14, 'banjaran', 'Main-main sama arduino', 'asdas', 'futuristic-hd-wallpapers-For-Full-Resolution-Wallpaper.jpg', '', '2020-06-07 16:48:01');
+(14, 'banjaran', 'Main-main sama arduino', 'asdas', 'futuristic-hd-wallpapers-For-Full-Resolution-Wallpaper.jpg', '', '2020-06-07 16:48:01'),
+(15, 'lala', 'Ular', 'python', 'download.png', '', '2020-06-08 17:02:16');
 
 -- --------------------------------------------------------
 
@@ -568,19 +574,19 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `forum_elektro`
 --
 ALTER TABLE `forum_elektro`
-  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `forum_feb`
@@ -646,7 +652,7 @@ ALTER TABLE `forum_pecintahewan`
 -- AUTO_INCREMENT for table `home`
 --
 ALTER TABLE `home`
-  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user`

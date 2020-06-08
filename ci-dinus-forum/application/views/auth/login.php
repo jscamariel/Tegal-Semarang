@@ -31,17 +31,9 @@
                     </button>
                 </div>
 
-                <div class="text-center p-t-45 p-b-4">
-                    <span class="txt1">
-                        Forgot
-                    </span>
 
-                    <a href="#" class="txt2 hov1">
-                        Password?
-                    </a>
-                </div>
 
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <span class="txt1">
                         Create an account?
                     </span>

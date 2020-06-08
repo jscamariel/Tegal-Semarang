@@ -65,9 +65,7 @@
                 <div class="text-center">
 
 
-                    <a href="#" class="txt2 hov1">
-                        Forgot Password?
-                    </a>
+
                 </div>
             </form>
         </div>

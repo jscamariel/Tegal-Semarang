@@ -1,7 +1,7 @@
 <div class="" id="">
 
   <!-- Sidebar -->
-  <div class="bg-light " id="sidebar-wrapper">
+  <div class="bg-light" id="sidebar-wrapper">
     <div class="sidebar-heading">Fakultas </div>
     <div class="list-group list-group-flush">
       <a href="<?= base_url(); ?>elektro" class="list-group-item list-group-item-action bg-light icofont-network-tower">Teknik Elektro</a>

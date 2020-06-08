@@ -4,12 +4,7 @@ class Elektro_model extends CI_model
 {
     public function getAllElektro()
     {
-        $this->db->select('*');
-        $this->db->from('forum_elektro');
-        $this->db->join('user', 'user.username = forum_elektro.username');
-        // $this->db->join('komentar', 'komentar.username = user.username', 'komentar.isi_komentar = forum_elektro.isi_komentar');
-        $query = $this->db->get();
-        return $query->result_array();
+        return $this->db->get('forum_elektro')->result_array();
 
         // return $this->db->get('forum_elektro')->result_array();  
     }

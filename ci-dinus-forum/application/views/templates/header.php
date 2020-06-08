@@ -25,7 +25,7 @@
   <link href="<?= base_url(); ?>assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="<?= base_url(); ?>assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="<?= base_url(); ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-
+  <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
   <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.js"></script>
@@ -69,16 +69,14 @@
 
             <li class="drop-down">
               <a href="#">
-                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+
                 <?php echo $this->session->userdata('username'); ?>
               </a>
               <ul>
-                <li><a href="<?= base_url(); ?>account">Akun</a></li>
-                <li><a href="#">Privacy & Policy</a></li>
-                <li><a href="#">Bantuan</a></li>
-                <li><a href="<?= base_url(); ?>auth/logout">Logout</a></li>
-
-              </ul>
+                <li><a class="icofont-ui-user" href="<?= base_url(); ?>user">Profile</a></li>
+                <li><a class="icofont-options" href="<?= base_url(); ?>user/changepassword">Settings</a></li>
+                <li><a class="icofont-logout" href="<?= base_url(); ?>auth/logout">Logout</a></li>
             </li>
           <?php else : ?>
             <li><a href="<?= base_url(); ?>auth">Sign In</a></li>

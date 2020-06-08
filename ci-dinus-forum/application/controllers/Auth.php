@@ -101,6 +101,7 @@ class Auth extends CI_Controller
                 'email' => $this->input->post('email', true),
                 'slug' => $slug,
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'gambar' => 'default.jpg',
                 'role_id' => 2
             ];
             $this->Auth_model->tambahUser($data);

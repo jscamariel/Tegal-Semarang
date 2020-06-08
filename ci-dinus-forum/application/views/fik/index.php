@@ -25,7 +25,8 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+
                 <h5 class="card-title"><?= $ti['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $ti['timestamp'] ?></h6>
 
@@ -36,8 +37,12 @@
                     <a href="<?= base_url(); ?>fik/ubah/<?= $ti['id_thread']; ?>" class="badge badge-warning float-right">Ubah</a>
 
                 <?php endif; ?>
+                <a href="<?= base_url(); ?>fik/detail/<?= $ti['id_thread']; ?>" class="card-link"><strong><?= $ti['nama_thread']; ?></strong></a>
+                <?php if ($ti['gambar']) : ?>
+                    <a href="<?= base_url(); ?>fik/detail/<?= $ti['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/fik/') . $ti['gambar']; ?>" class="card-img-top"></a>
+                <? else : ?>
 
-                <a href="<?= base_url(); ?>fik/detail/<?= $ti['id_thread']; ?>" class="card-link"><?= $ti['nama_thread']; ?></a>
+                <?php endif; ?>
             </div>
         </div>
     <?php endforeach; ?>

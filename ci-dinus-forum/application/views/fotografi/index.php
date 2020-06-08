@@ -26,7 +26,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
                 <h5 class="card-title"><?= $foto['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $foto['timestamp'] ?></h6>
 
@@ -35,9 +35,13 @@
                     <a href="<?= base_url(); ?>fotografi/hapus/<?= $foto['id_thread']; ?>" class="badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
                     <a href="<?= base_url(); ?>fotografi/ubah/<?= $foto['id_thread']; ?>" class="badge badge-warning float-right">Ubah</a>
                 <?php endif; ?>
+                <a href="<?= base_url(); ?>fotografi/detail/<?= $foto['id_thread']; ?>" class="card-link"><strong><?= $foto['nama_thread']; ?></strong></a>
+                <?php if ($foto['gambar']) : ?>
+                    <a href="<?= base_url(); ?>fotografi/detail/<?= $foto['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/fotografi/') . $foto['gambar']; ?>" class="card-img-top"></a>
+                <? else : ?>
 
+                <?php endif; ?>
 
-                <a href="<?= base_url(); ?>fotografi/detail/<?= $foto['id_thread']; ?>" class="card-link"><?= $foto['nama_thread']; ?></a>
             </div>
         </div>
     <?php endforeach; ?>

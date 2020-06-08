@@ -50,7 +50,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
                 <h5 class="card-title"><?= $or['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $or['timestamp'] ?></h6>
 
@@ -60,9 +60,13 @@
                     <a href="<?= base_url(); ?>olahraga/hapus/<?= $or['id_thread']; ?>" class="badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
                     <a href="<?= base_url(); ?>olahraga/ubah/<?= $or['id_thread']; ?>" class="badge badge-warning float-right">Ubah</a>
                 <?php endif; ?>
+                <a href="<?= base_url(); ?>olahraga/detail/<?= $or['id_thread']; ?>" class="card-link"><strong><?= $or['nama_thread']; ?></strong></a>
+                <?php if ($or['gambar']) : ?>
+                    <a href="<?= base_url(); ?>olahraga/detail/<?= $or['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/olahraga/') . $or['gambar']; ?>" class="card-img-top"></a>
+                <? else : ?>
 
+                <?php endif; ?>
 
-                <a href="<?= base_url(); ?>olahraga/detail/<?= $or['id_thread']; ?>" class="card-link"><?= $or['nama_thread']; ?></a>
             </div>
         </div>
     <?php endforeach; ?>

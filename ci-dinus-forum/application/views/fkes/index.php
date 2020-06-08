@@ -25,7 +25,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
                 <h5 class="card-title"><?= $fk['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $fk['timestamp'] ?></h6>
 
@@ -35,9 +35,13 @@
                     <a href="<?= base_url(); ?>fkes/ubah/<?= $fk['id_thread']; ?>" class="badge badge-warning float-right">Ubah</a>
 
                 <?php endif; ?>
+                <a href="<?= base_url(); ?>fkes/detail/<?= $fk['id_thread']; ?>" class="card-link"><strong><?= $fk['nama_thread']; ?></strong></a>
+                <?php if ($fk['gambar']) : ?>
+                    <a href="<?= base_url(); ?>fkes/detail/<?= $fk['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/fkes/') . $fk['gambar']; ?>" class="card-img-top"></a>
+                <? else : ?>
 
+                <?php endif; ?>
 
-                <a href="<?= base_url(); ?>fkes/detail/<?= $fk['id_thread']; ?>" class="card-link"><?= $fk['nama_thread']; ?></a>
             </div>
         </div>
     <?php endforeach; ?>

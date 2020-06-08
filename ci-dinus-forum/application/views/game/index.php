@@ -26,7 +26,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
                 <h5><?= $gm['username'] ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $gm['timestamp'] ?></h6>
 
@@ -35,9 +35,13 @@
                     <a href="<?= base_url(); ?>game/hapus/<?= $gm['id_thread']; ?>" class="badge badge-danger float-right" onclick="return confirm('Yakin?');">Hapus</a>
                     <a href="<?= base_url(); ?>game/ubah/<?= $gm['id_thread']; ?>" class="badge badge-warning float-right">Ubah</a>
                 <?php endif; ?>
+                <a href="<?= base_url(); ?>game/detail/<?= $gm['id_thread']; ?>" class="card-link"><strong><?= $gm['nama_thread']; ?></strong></a>
+                <?php if ($gm['gambar']) : ?>
+                    <a href="<?= base_url(); ?>game/detail/<?= $gm['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/game/') . $gm['gambar']; ?>" class="card-img-top"></a>
+                <? else : ?>
 
+                <?php endif; ?>
 
-                <a href="<?= base_url(); ?>game/detail/<?= $gm['id_thread']; ?>" class="card-link"><?= $gm['nama_thread']; ?></a>
             </div>
         </div>
     <?php endforeach; ?>

@@ -57,8 +57,6 @@
             </a>
             <ul>
               <li><a href="#">Akun</a></li>
-              <li><a href="#">Privacy & Policy</a></li>
-              <li><a href="#">Bantuan</a></li>
               <li><a href="<?= base_url(); ?>auth/logout">Logout</a></li>
 
             </ul>

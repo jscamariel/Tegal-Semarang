@@ -25,7 +25,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/'); ?>default.jpg">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
                 <h5 class="card-title"><?= $el['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $el['timestamp'] ?></h6>
 
@@ -36,8 +36,12 @@
                     <a href="<?= base_url(); ?>elektro/ubah/<?= $el['id_thread']; ?>" class="badge badge-warning float-right">Ubah</a>
                 <?php endif; ?>
 
+                <a href="<?= base_url(); ?>elektro/detail/<?= $el['id_thread']; ?>" class="card-link"><strong><?= $el['nama_thread']; ?></strong></a>
+                <?php if ($el['gambar']) : ?>
+                    <a href="<?= base_url(); ?>elektro/detail/<?= $el['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/elektro/') . $el['gambar']; ?>" class="card-img-top">
+                    </a><? else : ?>
 
-                <a href="<?= base_url(); ?>elektro/detail/<?= $el['id_thread']; ?>" class="card-link"><?= $el['nama_thread']; ?></a>
+                <?php endif; ?>
             </div>
         </div>
     <?php endforeach; ?>

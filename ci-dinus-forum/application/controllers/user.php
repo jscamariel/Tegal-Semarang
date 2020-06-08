@@ -1,158 +1,106 @@
 <?php
 
-  class User extends CI_Controller {
+class User extends CI_Controller
+{
 
-    public function __construct() {
-      parent::__construct();
-      $this->load->model('user_model');
-    }
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->model('user_meta_model');
+    $this->load->library('form_validation');
+  }
 
-    public function view($slug = FALSE){
-      //$this->load->model('tweet_model');
-      $this->load->model('user_meta_model');
-      //$this->load->model('follow_model');
+  public function index()
+  {
+    $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+    $this->load->view('templates/header', $data);
+    $this->load->view('user/profile', $data);
+  }
 
-      //get profile info
-      $data['profile_user'] = $this->user_model->get_user_by_slug($slug);
-      if($data['profile_user']){
-        //$data['profile_tweets'] = $this->tweet_model->get_tweets_by_user_id($data['profile_user']['id']);
-        $data['profile_user_meta'] = $this->user_meta_model->get_user_meta_by_user_id($data['profile_user']['id']);
-        if(!$data['profile_user_meta']){
-          $data['profile_user_meta']['website'] = '';
-          $data['profile_user_meta']['about'] = '';
-          $data['profile_user_meta']['avatar'] = false;
-        }
-        //$data['follow'] = $this->follow_model->get_follow_by_source_id_and_target_id($this->session->userdata('id'), $data['profile_user']['id']);
-      }
+  public function edit()
+  {
+    $data['title'] = 'Edit Profile';
+    $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
-      //get random user info for sidebar
-      $sidebar_users = $this->user_model->get_random(10);
-      foreach($sidebar_users as $sidebar_user){
-        $sidebar_user['user_meta'] = $this->user_meta_model->get_user_meta_by_user_id($sidebar_user['id']);
-        if(!$sidebar_user['user_meta']){
-          $sidebar_user['user_meta']['website'] = '';
-          $sidebar_user['user_meta']['about'] = '';
-          $sidebar_user['user_meta']['avatar'] = false;
-        }
-        //$sidebar_user['follow'] = $this->follow_model->get_follow_by_source_id_and_target_id($this->session->userdata('id'), $sidebar_user['id']);
-        $data['sidebar_users'][] = $sidebar_user;
-      }
+    $this->form_validation->set_rules('username', 'Username', 'required|trim');
 
-      $this->load->view('templates/header');
-      //$this->load->view('templates/nav');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+
+    if ($this->form_validation->run() == FALSE) {
+      $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
-      $this->load->view('user/profile', $data);
-      $this->load->view('templates/rightsidebar');
-      //$this->load->view('templates/footer');
-    }
+      $this->load->view('user/edit_profile', $data);
+    } else {
+      $username = $this->input->post('username');
+      $email = $this->input->post('email');
 
-    public function account(){
-      $this->load->model('user_meta_model');
+      $upload_image = $_FILES['gambar'];
 
-      $data['user_meta_array'] = $this->user_meta_model->get_user_meta_by_user_id($this->session->userdata('id'));
 
-      if(!$data['user_meta_array']){
-        $data['user_meta_array']['website'] = '';
-        $data['user_meta_array']['about'] = '';
-        $data['user_meta_array']['avatar'] = FALSE;
-      }
+      if ($upload_image) {
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '2048';
+        $config['upload_path'] = './assets/img/profile/';
 
-      $this->load->view('templates/header');
-      //$this->load->view('templates/nav');
-      $this->load->view('templates/sidebar');
-      $this->load->view('user/account', $data);
-      $this->load->view('templates/rightsidebar');
-      //$this->load->view('templates/footer');
-    }
+        $this->load->library('upload', $config);
 
-    public function login(){
-      $this->load->helper('url');
-      
-      if($user_info = $this->user_model->login_user()){
-        $user_session_data = array(
-          'id'  => $user_info['id'],
-          'username'  => $user_info['username'],
-          'email'     => $user_info['email'],
-          'logged_in' => TRUE
-        );
-
-        $this->session->set_userdata($user_session_data);
-        redirect('/', 'location');
-      } else {
-        $this->load->view('templates/header');
-        //$this->load->view('templates/nav');
-        $this->load->view('templates/sidebar');
-        $this->load->view('home/index');
-        $this->load->view('templates/rightsidebar');
-        //$this->load->view('templates/footer');
-      }
-    }
-
-    public function logout(){
-      $this->load->helper('url');
-      $this->session->sess_destroy();
-      redirect('/', 'location');
-    }
-
-    public function register(){
-      $this->load->helper('url');
-      $this->load->library('form_validation');
-      //$this->load->model('follow_model');
-
-      $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]|is_unique[user.username]|alpha_dash');
-      $this->form_validation->set_rules('email', 'Email', 'trim|xss_clean|required|valid_email|is_unique[user.email]');
-      $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-
-      if ($this->form_validation->run() == FALSE) {
-        $this->load->view('templates/header');
-        //$this->load->view('templates/nav');
-        $this->load->view('templates/sidebar');
-        $this->load->view('user/register');
-        //$this->load->view('templates/rightsidebar');
-        //$this->load->view('templates/footer');
-      } else {
-        $this->user_model->set_user();
-
-        $user_info = $this->user_model->login_user();
-        $user_session_data = array(
-          'id'  => $user_info['id'],
-          'username'  => $user_info['username'],
-          'email'     => $user_info['email'],
-          'logged_in' => TRUE
-        );
-
-        $this->session->set_userdata($user_session_data);
-
-        //$this->follow_model->set_first_follow();
-
-        redirect('/', 'location');
-      }
-    }
-
-    public function save(){
-      $this->load->helper('url');
-      $this->load->library('form_validation');
-
-      if($this->input->post('email') !== $this->session->userdata('email')){
-        $extra_validation = '|is_unique[user.email]';
-      } else {
-        $extra_validation = '';
-      }
-
-      $this->form_validation->set_rules('email', 'Email', 'trim|xss_clean|required|valid_email' . $extra_validation);
-      $this->form_validation->set_rules('password', 'Password', 'min_length[5]');
-
-      if ($this->form_validation->run() == FALSE) {
-        $this->account();
-      } else {
-        if($this->user_model->save_user()){
-          $this->session->set_userdata('email', $this->input->post('email'));
-          redirect('/account', 'location');
+        if ($this->upload->do_upload('gambar')) {
+          $new_image = $this->upload->data('file_name');
+          $this->db->set('gambar', $new_image);
         } else {
-          //old password was wrong (or database error)
+          echo $this->upload->display_errors();
+        }
+      }
+
+      $this->db->set('username', $username);
+      $this->db->where('email', $email);
+      $this->db->update('user');
+
+      $this->session->set_flashdata('flash', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      Profile has been updated!
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>');
+      redirect('user');
+    }
+  }
+
+  public function changepassword()
+  {
+    $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+    $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[6]|matches[new_password2]');
+    $this->form_validation->set_rules('new_password2', 'Confirm New Password', 'required|trim|min_length[6]|matches[new_password1]');
+
+    if ($this->form_validation->run() == FALSE) {
+      $data['title'] = 'Change Password';
+      $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar');
+      $this->load->view('user/changepassword', $data);
+    } else {
+      $current_password = $this->input->post('current_password');
+      $new_password = $this->input->post('new_password1');
+
+      if (password_verify($current_password, $data['user']['password'])) {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong current password!</div>');
+        redirect('user/changepassword');
+      } else {
+        if ($current_password == $new_password) {
+          $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">New password cannot be the same as current password</div>');
+          redirect('user/changepassword');
+        } else {
+          $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+          $this->db->set('password', $password_hash);
+          $this->db->where('username', $this->session->userdata('username'));
+          $this->db->update('user');
+
+          $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password has been changed</div>');
+          redirect('user/changepassword');
         }
       }
     }
   }
-
-?>
+}

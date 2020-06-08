@@ -13,6 +13,7 @@ class Olahraga extends CI_Controller
 
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Kategori Olahraga';
         $data['olahraga'] = $this->Olahraga_model->getAllOlahraga();
         if ($this->input->post('keyword')) {
@@ -28,6 +29,7 @@ class Olahraga extends CI_Controller
 
     public function tambah()
     {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Buat Thread Baru';
         $this->form_validation->set_rules('nama_thread', 'Nama Thread', 'required');
         $this->form_validation->set_rules('isi', 'Isi', 'required');
@@ -44,6 +46,22 @@ class Olahraga extends CI_Controller
                 'nama_thread' => $this->input->post('nama_thread', true),
                 'isi' => $this->input->post('isi', true)
             ];
+            $upload_image = $_FILES['gambar'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size'] = '2048';
+                $config['upload_path'] = './assets/img/thread/olahraga/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('gambar')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('gambar', $new_image);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
             $this->Olahraga_model->tambahDataOlahraga($insert);
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('olahraga');
@@ -59,6 +77,7 @@ class Olahraga extends CI_Controller
 
     public function detail($id_thread)
     {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['olahraga'] = $this->Olahraga_model->getOlahragaById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
@@ -70,6 +89,7 @@ class Olahraga extends CI_Controller
 
     public function ubah($id_thread)
     {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Ubah Thread';
         $data['olahraga'] = $this->Olahraga_model->getOlahragaById($id_thread);
         $this->form_validation->set_rules('nama_thread', 'Nama Thread', 'required');

@@ -25,5 +25,4 @@
           android:title="My Account"
           android:icon="@drawable/ic_person"/>
 
-
 </menu>

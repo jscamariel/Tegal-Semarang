@@ -10,24 +10,24 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="<?= base_url();?>assets/img/favicon.png" rel="icon">
-  <link href="<?= base_url();?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?= base_url(); ?>assets/img/favicon.png" rel="icon">
+  <link href="<?= base_url(); ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="<?= base_url();?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="<?= base_url();?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-
+  <link href="<?= base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="<?= base_url();?>assets/css/style.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
   <script src="<?= base_url(); ?>assets/vendor/jquery/jquery.js"></script>
 
   <!-- =======================================================
@@ -47,57 +47,40 @@
       <h1 class="logo mr-auto"><a href="<?= base_url(); ?>"><span text-align="left">DINUS</span>Forum</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <?php if($this->session->userdata('logged_in')) : ?>
-          <!-- Might add something here -->
-      <?php else : ?>
-        <?php
-            $attributes = array('class' => 'pure-form top-login', 'id' => 'login-form');
-            echo form_open('/login', $attributes); 
-          ?>
-          
-            <fieldset>
-              <div class="input-group">
-                <input class="form-control" id = "username" name = "username" type = "text" placeholder = "Username" value="<?php echo set_value('username'); ?>">
-                <input class="form-control" id = "password" name = "password" type = "password" placeholder = "Password" value="<?php echo set_value('password'); ?>">
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-primary icofont search">Sign in</button>
-                </div>
+
+
+      <div class="">
+        <div class="">
+          <form action="" method="post">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Cari disini.." name="keyword">
+              <div class="input-group-append">
+                <button class="btn btn-primary icofont search" type="submit">Cari</button>
               </div>
-            </fieldset>
-          
-        </form>
-      <?php ENDIF; ?>
-      
-      <div class = "">
-        <div class = "">
-            <form action="" method="post">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari disini.." name="keyword">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary icofont search" type="submit">Cari</button>
-                    </div>
-                </div>
-            </form>
+            </div>
+          </form>
         </div>
-    </div>
+      </div>
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="<?= base_url(); ?>">Home</a></li>        
-          <?php if($this->session->userdata('logged_in')) : ?>
-             <li><a href="#">Notification</a></li>      
-            <li class = "welcome">Welcome <?php echo $this->session->userdata('username'); ?>.</li>   
-          <li class="drop-down"><a href="#"><?php echo $this->session->userdata('username'); ?></a>
-            <ul>             
-              <li><a href="<?= base_url(); ?>account">Akun</a></li>
-              <li><a href="#">Privacy & Policy</a></li>
-              <li><a href="#">Bantuan</a></li>
-              <li><a href="<?= base_url(); ?>logout">Logout</a></li>
-              
-            </ul>
-          </li>
+          <li><a href="<?= base_url(); ?>">Home</a></li>
+          <?php if ($this->session->userdata('logged_in')) : ?>
+            <li><a href="#">Notification</a></li>
+
+            <li class="drop-down">
+              <a href="#">
+                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+
+                <?php echo $this->session->userdata('username'); ?>
+              </a>
+              <ul>
+                <li><a class="icofont-ui-user" href="<?= base_url(); ?>user">Profile</a></li>
+                <li><a class="icofont-options" href="<?= base_url(); ?>user/changepassword">Settings</a></li>
+                <li><a class="icofont-logout" href="<?= base_url(); ?>auth/logout">Logout</a></li>
+            </li>
           <?php else : ?>
-            <li><a href="<?= base_url(); ?>register">Sign Up</a></li>
-          <?php ENDIF; ?>
+            <li><a href="<?= base_url(); ?>auth">Sign In</a></li>
+          <?php endif; ?>
         </ul>
       </nav><!-- .nav-menu -->
 

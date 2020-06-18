@@ -31,9 +31,11 @@ class Auth extends CI_Controller
             if ($user == true) {
                 if (password_verify($password, $user['password'])) {
                     $data = [
+                        'user_id' => $user['user_id'],
                         'username' => $user['username'],
                         'email' => $user['email'],
                         'role_id' => $user['role_id'],
+                        'gambar_profle' => $user['gambar_profle'],
                         'logged_in' => TRUE
                     ];
                     $this->session->set_userdata($data);
@@ -101,7 +103,7 @@ class Auth extends CI_Controller
                 'email' => $this->input->post('email', true),
                 'slug' => $slug,
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'gambar' => 'default.jpg',
+                'gambar_profile' => 'default.jpg',
                 'role_id' => 2
             ];
             $this->Auth_model->tambahUser($data);
@@ -118,8 +120,14 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        $this->load->helper('url');
+
+        $this->session->unset_userdata('user_id');
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
         $this->session->sess_destroy();
-        redirect('home');
+
+
+        redirect('home', 'refresh');
     }
 }

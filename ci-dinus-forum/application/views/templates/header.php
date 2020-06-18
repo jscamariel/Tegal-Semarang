@@ -69,7 +69,7 @@
 
             <li class="drop-down">
               <a href="#">
-                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar_profile']; ?>">
 
                 <?php echo $this->session->userdata('username'); ?>
               </a>

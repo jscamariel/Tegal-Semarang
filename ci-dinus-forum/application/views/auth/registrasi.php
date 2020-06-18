@@ -7,7 +7,7 @@
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Username required">
-                    <input class="input100" type="text" name="username" placeholder="Username" autocomplete="off" autocapitalize="on">
+                    <input class="input100" type="text" name="username" placeholder="Username" autocomplete="off" value="<?= set_value('username'); ?>">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
@@ -15,7 +15,7 @@
                 <br>
 
                 <div class="wrap-input100 validate-input" data-validate="NIM required ex: A11.2017.10116">
-                    <input class="input100" type="text" name="nim" placeholder="NIM" autocomplete="off">
+                    <input class="input100" type="text" name="nim" placeholder="NIM" autocomplete="off" value="<?= set_value('nim'); ?>">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
@@ -23,7 +23,7 @@
                 <br>
 
                 <div class="wrap-input100  validate-input" data-validate="Valid email required ex:zxc@gmail.com">
-                    <input class="input100" type="email" name="email" placeholder="Email" autocomplete="off">
+                    <input class="input100" type="email" name="email" placeholder="Email" autocomplete="off" value="<?= set_value('email'); ?>">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>

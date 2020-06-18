@@ -4,7 +4,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+                    <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar_profile']; ?>">
                     <strong><?= $fib['username'] ?></strong>
                 </div>
                 <div class="card-body">

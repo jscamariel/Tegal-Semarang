@@ -171,6 +171,13 @@ h6{
   width: 40px;
 }
 
+.card .card-body  .image-profile .img-profile {
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 100px;
+  width: 100px;  
+}
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/

@@ -7,7 +7,7 @@
             <div class="form-group row mt-5">
                 <label for="email" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
-                    <input type="username" class="form-control" id="username" name="username" value="<?= $user['username']; ?>">
+                    <input type="username" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" readonly>
                     <small class="text-danger"><?= form_error('username'); ?></small>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="col-sm-10">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" class="img-thumbnail">
+                            <img src="<?= base_url('assets/img/profile/') . $user['gambar_profile']; ?>" class="img-thumbnail">
                         </div>
                         <div class="col-sm-9">
                             <div class="custom-file">

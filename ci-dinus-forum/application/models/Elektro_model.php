@@ -4,16 +4,24 @@ class Elektro_model extends CI_model
 {
     public function getAllElektro()
     {
-        return $this->db->get('forum_elektro')->result_array();
+        $this->db->order_by('id_thread', 'DESC');
 
+        $query = $this->db->get('forum_elektro');
+        return $query->result_array();
         // return $this->db->get('forum_elektro')->result_array();  
+    }
+
+    public function getUser()
+    {
+        $this->db->from('forum_elektro');
+        $this->db->join('user', 'user.user_id = forum_elektro.user_id');
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function tambahDataElektro($insert)
     {
-
         $this->db->insert('forum_elektro', $insert);
-        //print_r($this->db->error());
     }
 
 
@@ -29,13 +37,7 @@ class Elektro_model extends CI_model
 
     public function getAllKomentar()
     {
-        $this->db->select('*');
-        $this->db->from('forum_elektro');
-        $this->db->join('user', 'user.username = forum_elektro.username');
-        $this->db->join('komentar', 'komentar.username = user.username', 'komentar.isi_komentar = forum_elektro.isi_komentar');
-        $query = $this->db->get();
-
-        return $query->result_array();
+        return $this->db->get('komentar')->result_array();
     }
 
     public function hapusDataElektro($id_thread)
@@ -53,5 +55,20 @@ class Elektro_model extends CI_model
 
         $this->db->where('id_thread', $this->input->post('id_thread'));
         $this->db->update('forum_elektro', $data);
+    }
+
+    public function getrow($table, $where)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function hapusKomentar($id_komentar)
+    {
+        $this->db->where('id_komentar', $id_komentar);
+        $this->db->delete('komentar');
     }
 }

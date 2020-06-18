@@ -46,7 +46,7 @@ class User extends CI_Controller
 
         if ($this->upload->do_upload('gambar')) {
           $new_image = $this->upload->data('file_name');
-          $this->db->set('gambar', $new_image);
+          $this->db->set('gambar_profile', $new_image);
         } else {
           echo $this->upload->display_errors();
         }

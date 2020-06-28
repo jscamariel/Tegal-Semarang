@@ -29,6 +29,7 @@ class Fkes extends CI_Controller
         $data['fkes'] = $this->Fkes_model->getFkesById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
+        $data['komentar'] = $this->Fkes_model->getAllKomentar();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('fkes/detail', $data);
@@ -49,6 +50,8 @@ class Fkes extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         } else {
             $insert = [
+                'id_kategori' => 6,
+                'user_id' => $this->session->userdata('user_id'),
                 'username' =>  $this->session->userdata('username'),
                 'nama_thread' => $this->input->post('nama_thread', true),
                 'isi' => $this->input->post('isi', true)
@@ -101,5 +104,38 @@ class Fkes extends CI_Controller
         $this->Fkes_model->hapusDataFkes($id_thread);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('fkes');
+    }
+
+    public function kirimKomen($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+
+
+        $nama_thread = $this->Fkes_model->getrow('forum_fkes', $where, 'nama_thread');
+        $this->form_validation->set_rules('isi_komentar', 'Komentar', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('fkes/detail',);
+            $this->load->view('templates/rightsidebar');
+        } else
+            $insert = [
+                'id_kategori' => 6,
+                'user_id' => $this->session->userdata('user_id'),
+                'username' =>  $this->session->userdata('username'),
+                'id_thread' => $id_thread,
+                'nama_thread' => $nama_thread->nama_thread,
+                'isi_komentar' => $this->input->post('isi_komentar', true),
+            ];
+        $this->Fkes_model->tambahKomentar($insert);
+        redirect('fkes/detail/' . $id_thread, 'refresh');
+    }
+
+    public function hapusKomen($id_komentar)
+    {
+
+        $this->Fkes_model->hapusKomentar($id_komentar);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('fkes/detail/', 'refresh');
     }
 }

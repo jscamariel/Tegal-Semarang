@@ -30,16 +30,6 @@ class Elektro_model extends CI_model
         return $this->db->get_where('forum_elektro', ['id_thread' => $id_thread])->row_array();
     }
 
-    public function tambahKomentarElektro($insert)
-    {
-        $this->db->insert('komentar', $insert);
-    }
-
-    public function getAllKomentar()
-    {
-        return $this->db->get('komentar')->result_array();
-    }
-
     public function hapusDataElektro($id_thread)
     {
         $this->db->where('id_thread', $id_thread);
@@ -66,9 +56,23 @@ class Elektro_model extends CI_model
         return $query->row();
     }
 
-    public function hapusKomentar($id_komentar)
+    public function Like($insert)
     {
-        $this->db->where('id_komentar', $id_komentar);
-        $this->db->delete('komentar');
+        $this->db->insert('tb_vote', $insert);
+    }
+
+    public function unLike($data)
+    {
+        $this->db->delete('tb_vote', $data);
+    }
+
+    public function disLike($insert)
+    {
+        $this->db->insert('tb_vote', $insert);
+    }
+
+    public function undisLike($data)
+    {
+        $this->db->delete('tb_vote', $data);
     }
 }

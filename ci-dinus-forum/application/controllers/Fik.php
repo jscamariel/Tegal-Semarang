@@ -33,6 +33,7 @@ class Fik extends CI_Controller
         $data['fik'] = $this->Fik_model->getFikById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
+        $data['komentar'] = $this->Fik_model->getAllKomentar();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('fik/detail', $data);
@@ -54,6 +55,8 @@ class Fik extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         } else {
             $insert = [
+                'id_kategori' => 5,
+                'user_id' => $this->session->userdata('user_id'),
                 'username' =>  $this->session->userdata('username'),
                 'nama_thread' => $this->input->post('nama_thread', true),
                 'isi' => $this->input->post('isi', true)
@@ -106,5 +109,38 @@ class Fik extends CI_Controller
         $this->Fik_model->hapusDataFik($id_thread);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('fik');
+    }
+
+    public function kirimKomen($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+
+
+        $nama_thread = $this->Fik_model->getrow('forum_fik', $where, 'nama_thread');
+        $this->form_validation->set_rules('isi_komentar', 'Komentar', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('fik/detail',);
+            $this->load->view('templates/rightsidebar');
+        } else
+            $insert = [
+                'id_kategori' => 5,
+                'user_id' => $this->session->userdata('user_id'),
+                'username' =>  $this->session->userdata('username'),
+                'id_thread' => $id_thread,
+                'nama_thread' => $nama_thread->nama_thread,
+                'isi_komentar' => $this->input->post('isi_komentar', true),
+            ];
+        $this->Fik_model->tambahKomentar($insert);
+        redirect('fik/detail/' . $id_thread, 'refresh');
+    }
+
+    public function hapusKomen($id_komentar)
+    {
+
+        $this->Fik_model->hapusKomentar($id_komentar);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('fik/detail/', 'refresh');
     }
 }

@@ -33,6 +33,7 @@ class Home extends CI_Controller
         $data['home'] = $this->Home_model->getHomeById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
+        $data['komentar'] = $this->Home_model->getAllKomentar();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('home/detail', $data);
@@ -56,6 +57,8 @@ class Home extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         } else {
             $insert = [
+                'id_kategori' => 1,
+                'user_id' => $this->session->userdata('user_id'),
                 'username' =>  $this->session->userdata('username'),
                 'nama_thread' => $this->input->post('nama_thread', true),
                 'isi' => $this->input->post('isi', true)
@@ -109,5 +112,37 @@ class Home extends CI_Controller
         $this->Home_model->hapusDataHome($id_thread);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('home');
+    }
+
+    public function kirimKomen($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+
+        $nama_thread = $this->Home_model->getrow('home', $where, 'nama_thread');
+        $this->form_validation->set_rules('isi_komentar', 'Komentar', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('home/detail',);
+            $this->load->view('templates/rightsidebar');
+        } else
+            $insert = [
+                'id_kategori' => 1,
+                'user_id' => $this->session->userdata('user_id'),
+                'username' =>  $this->session->userdata('username'),
+                'id_thread' => $id_thread,
+                'nama_thread' => $nama_thread->nama_thread,
+                'isi_komentar' => $this->input->post('isi_komentar', true),
+            ];
+        $this->Home_model->tambahKomentarHome($insert);
+        redirect('home/detail/' . $id_thread, 'refresh');
+    }
+
+    public function hapusKomen($id_komentar)
+    {
+
+        $this->Home_model->hapusKomentar($id_komentar);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('home/detail/', 'refresh');
     }
 }

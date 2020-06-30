@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2020 at 07:50 PM
+-- Generation Time: Jun 18, 2020 at 06:52 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -78,22 +78,21 @@ INSERT INTO `event` (`id`, `gambar`, `judul`, `isi`, `date`, `time`, `timestamp`
 
 CREATE TABLE `forum_elektro` (
   `id_thread` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `nama_thread` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `gambar` varchar(128) NOT NULL,
-  `isi_komentar` text NOT NULL,
-  `status_komentar` varchar(2) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `gambar_profile` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `forum_elektro`
 --
 
-INSERT INTO `forum_elektro` (`id_thread`, `username`, `nama_thread`, `isi`, `gambar`, `isi_komentar`, `status_komentar`, `timestamp`) VALUES
-(26, 'lala', 'Arduino project', 'bikin robot keren tapi susah tapi keren sih', '515b4656ce395f8a380000001.png', '', '', '2020-06-08 10:59:13'),
-(27, 'lala', 'Mikrotik', 'main main sama kabel mikrotik', 'original.jpg', '', '', '2020-06-08 17:05:20');
+INSERT INTO `forum_elektro` (`id_thread`, `user_id`, `username`, `nama_thread`, `isi`, `gambar`, `timestamp`, `gambar_profile`) VALUES
+(39, 34, 'Haku', '312', '123', '', '2020-06-18 13:00:01', '');
 
 -- --------------------------------------------------------
 
@@ -350,12 +349,29 @@ INSERT INTO `home` (`id_thread`, `username`, `nama_thread`, `isi`, `gambar`, `ga
 
 CREATE TABLE `komentar` (
   `id_komentar` int(11) NOT NULL,
+  `id_thread` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `nama_thread` varchar(255) NOT NULL,
   `isi_komentar` text NOT NULL,
-  `status_komentar` varchar(2) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id_komentar`, `id_thread`, `user_id`, `username`, `nama_thread`, `isi_komentar`, `timestamp`) VALUES
+(17, 26, 0, 'Haku', 'Arduino project', '321', '2020-06-16 14:09:15'),
+(18, 27, 0, 'Haku', 'Mikrotik', '1123', '2020-06-16 14:09:31'),
+(19, 28, 0, 'Haku', 'banjarn', 'sabenjaran', '2020-06-16 14:09:40'),
+(20, 28, 0, 'Haku', 'banjarn', 'hiahahahaha', '2020-06-16 14:19:43'),
+(21, 27, 0, 'lala', 'Mikrotik', 'kurang', '2020-06-16 14:24:45'),
+(22, 26, 0, 'lala', 'Arduino project', '333', '2020-06-16 14:28:32'),
+(23, 26, 0, 'lala', 'Arduino project', '32131', '2020-06-16 14:36:27'),
+(24, 26, 0, 'Daniel', 'Arduino project', 'sing semangat lur', '2020-06-16 14:51:58'),
+(40, 39, 0, 'lala', '312', '321', '2020-06-18 16:28:55'),
+(41, 39, 0, 'Daniel', '312', '33', '2020-06-18 16:36:35');
 
 -- --------------------------------------------------------
 
@@ -364,7 +380,7 @@ CREATE TABLE `komentar` (
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `username` varchar(225) NOT NULL,
   `nim` varchar(128) NOT NULL,
   `email` varchar(225) NOT NULL,
@@ -372,7 +388,7 @@ CREATE TABLE `user` (
   `password` varchar(225) NOT NULL,
   `password_version` tinyint(4) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `gambar` varchar(128) NOT NULL,
+  `gambar_profile` varchar(128) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -380,13 +396,14 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `nim`, `email`, `slug`, `password`, `password_version`, `role_id`, `gambar`, `date_created`) VALUES
+INSERT INTO `user` (`user_id`, `username`, `nim`, `email`, `slug`, `password`, `password_version`, `role_id`, `gambar_profile`, `date_created`) VALUES
 (1, 'admin', 'admin', 'admin@gmail.com', 'admin', '$2y$10$pTOSdWimwa0dUZZFQ.Np4uCX/P26MYEgLaUOLjctnWZeH7MZLDxv2', 0, 1, 'default.jpg', '2020-06-06 14:33:42'),
 (29, 'lala', 'lala', 'lala@gmail.com', 'lala', '$2y$10$SURndWSRm1FDwUrHlcIpJOATQoRgR7QN/xC1a63vTyg0i2gZrACHS', 0, 2, 'default.jpg', '2020-06-06 13:21:11'),
 (30, 'Kevin', 'A11.2017.10111', 'kevin@gmail.com', 'kevin', '$2y$10$bhgBOed4NL2GI5CrPPSKC.Z84D1AgbnhHqFCsqV8/0JTqwjqihFyO', 0, 2, 'default.jpg', '2020-06-06 14:30:06'),
 (33, 'aww', 'aww', 'aww@gmail.com', 'aww', '$2y$10$MPft7lrK4pTb8MzHfNMzrOV5vP6WnYxPa0bKSL.DzJSKqb9R36Rai', 0, 2, 'maxresdefault.jpg', '2020-06-07 11:11:08'),
 (34, 'Haku', 'A11.2017.11111', 'haku@gmail.com', 'haku', '$2y$10$LVNSSZFDkLTrmXy3aXPgP.YbL1eD/eG8XpIz.XF28OFwoMlakxAxm', 0, 2, '3237149_01.jpg', '2020-06-07 13:31:57'),
-(35, 'banjaran', 'a11', 'a11@gmail.com', 'banjaran', '$2y$10$oCdcp2z3IS9I0gQsQ76/z.3yqqJkV7g7734oRlKGd0I/Lk2pXx4sW', 0, 2, '6pRO4wZ.jpg', '2020-06-07 16:08:29');
+(35, 'banjaran', 'a11', 'a11@gmail.com', 'banjaran', '$2y$10$oCdcp2z3IS9I0gQsQ76/z.3yqqJkV7g7734oRlKGd0I/Lk2pXx4sW', 0, 2, '6pRO4wZ.jpg', '2020-06-07 16:08:29'),
+(36, 'Daniel', 'A11.2017.10116', 'spacevt000@gmail.com', 'daniel', '$2y$10$Tfwu0hcc7GIZurgH2fFCJOfXM//SqozTWOZZA.lnkC198AUZnY/UK', 0, 2, 'jjkk.jpg', '2020-06-16 14:51:26');
 
 -- --------------------------------------------------------
 
@@ -431,7 +448,7 @@ CREATE TABLE `user_profile` (
 --
 
 CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `role` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -439,7 +456,7 @@ CREATE TABLE `user_role` (
 -- Dumping data for table `user_role`
 --
 
-INSERT INTO `user_role` (`id`, `role`) VALUES
+INSERT INTO `user_role` (`role_id`, `role`) VALUES
 (1, 'administrator'),
 (2, 'member');
 
@@ -541,7 +558,7 @@ ALTER TABLE `komentar`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `username_2` (`username`,`email`),
   ADD KEY `slug` (`slug`),
   ADD KEY `username` (`username`),
@@ -564,7 +581,7 @@ ALTER TABLE `user_profile`
 -- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -586,7 +603,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `forum_elektro`
 --
 ALTER TABLE `forum_elektro`
-  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `forum_feb`
@@ -652,13 +669,19 @@ ALTER TABLE `forum_pecintahewan`
 -- AUTO_INCREMENT for table `home`
 --
 ALTER TABLE `home`
-  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `komentar`
+--
+ALTER TABLE `komentar`
+  MODIFY `id_komentar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `user_meta`
@@ -676,7 +699,7 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

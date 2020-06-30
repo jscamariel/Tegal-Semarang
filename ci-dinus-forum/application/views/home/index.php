@@ -25,7 +25,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar_profile']; ?>">
 
                 <h5 class="card-title"><?= $hm['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $hm['timestamp'] ?></h6>
@@ -40,7 +40,7 @@
 
                 <a href="<?= base_url(); ?>home/detail/<?= $hm['id_thread']; ?>" class="card-link"><strong><?= $hm['nama_thread']; ?></strong></a>
                 <?php if ($hm['gambar']) : ?>
-                    <img src="<?= base_url('assets/img/thread/home/') . $hm['gambar']; ?>" class="card-img-top">
+                    <a href="<?= base_url(); ?>home/detail/<?= $hm['id_thread']; ?>"><img src="<?= base_url('assets/img/thread/home/') . $hm['gambar']; ?>" class="card-img-top"></a>
                 <? else : ?>
 
                 <?php endif; ?>

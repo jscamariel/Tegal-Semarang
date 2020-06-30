@@ -3,4 +3,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="Array_jurusan">
+        <item>Silahkan Dipilih</item>
+        <item>Teknik Informatika S1</item>
+        <item>Teknik Informatika D3</item>
+        <item>Desain Komunikasi Visual</item>
+        <item>Sistem Informasi</item>
+        <item>Ilmu Komputer</item>
+        <item>Akutansi</item>
+        <item>Manajemen</item>
+        <item>Rekam Medis</item>
+        <item>Teknik Mesin</item>
+        <item>Sastra Inggris</item>
+        <item>Film Dan Televisi</item>
+        <item>Broadcasting</item>
+    </string-array>
 </resources>

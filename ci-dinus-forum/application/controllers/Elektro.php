@@ -9,14 +9,18 @@ class Elektro extends CI_Controller
         $this->load->model('Elektro_model');
         $this->load->model('Berita_model');
         $this->load->model('Event_model');
+        $this->load->model('Komentar_model');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+
+        $data['user'] = $this->Elektro_model->getUser();
         $data['judul'] = 'Kategori Elektro';
         $data['elektro'] = $this->Elektro_model->getAllElektro();
+        $data['result'] = $this->db->count_all_results('komentar');
+
         if ($this->input->post('keyword')) {
             //$data['elektro'] = $this->Elektro_model->cariDataElektro();
         }
@@ -31,9 +35,13 @@ class Elektro extends CI_Controller
     public function detail($id_thread)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['pp'] = $this->Elektro_model->getUser();
         $data['elektro'] = $this->Elektro_model->getElektroById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
+        $data['komentar'] = $this->Komentar_model->getAllKomentar();
+
+        $data['result'] = $this->db->count_all('komentar');
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('elektro/detail', $data);
@@ -43,6 +51,7 @@ class Elektro extends CI_Controller
 
     public function tambah()
     {
+
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $this->form_validation->set_rules('nama_thread', 'Nama Thread', 'required');
         $this->form_validation->set_rules('isi', 'Isi', 'required');
@@ -54,10 +63,13 @@ class Elektro extends CI_Controller
             $this->load->view('elektro/tambah');
             $this->load->view('templates/rightsidebar', $data, $data);
         } else {
+
             $insert = [
+                'id_kategori' => 2,
+                'user_id' => $this->session->userdata('user_id'),
                 'username' =>  $this->session->userdata('username'),
                 'nama_thread' => $this->input->post('nama_thread', true),
-                'isi' => $this->input->post('isi', true)
+                'isi' => $this->input->post('isi', true),
             ];
             $upload_image = $_FILES['gambar'];
             if ($upload_image) {
@@ -76,8 +88,9 @@ class Elektro extends CI_Controller
             }
 
             $this->Elektro_model->tambahDataElektro($insert);
+
             $this->session->set_flashdata('flash', 'Dibuat');
-            redirect('elektro');
+            redirect('elektro', 'refresh');
         }
     }
 
@@ -99,7 +112,7 @@ class Elektro extends CI_Controller
         } else {
             $this->Elektro_model->ubahDataElektro();
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('elektro');
+            redirect('elektro', 'refresh');
         }
     }
 
@@ -107,11 +120,15 @@ class Elektro extends CI_Controller
     {
         $this->Elektro_model->hapusDataElektro($id_thread);
         $this->session->set_flashdata('flash', 'Dihapus');
-        redirect('elektro');
+        redirect('elektro', 'refresh');
     }
 
-    public function kirimKomen()
+    public function kirimKomen($id_thread)
     {
+        $where = array('id_thread' => $id_thread);
+
+
+        $nama_thread = $this->Elektro_model->getrow('forum_elektro', $where, 'nama_thread');
         $this->form_validation->set_rules('isi_komentar', 'Komentar', 'required');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header');
@@ -120,9 +137,86 @@ class Elektro extends CI_Controller
             $this->load->view('templates/rightsidebar');
         } else
             $insert = [
+                'id_kategori' => 2,
+                'user_id' => $this->session->userdata('user_id'),
+                'username' =>  $this->session->userdata('username'),
+                'id_thread' => $id_thread,
+                'nama_thread' => $nama_thread->nama_thread,
                 'isi_komentar' => $this->input->post('isi_komentar', true),
             ];
-        $this->Elektro_model->tambahKomentarElektro($insert);
-        redirect('elektro/detail');
+        $this->Komentar_model->tambahKomentar($insert);
+        redirect('elektro/detail/' . $id_thread, 'refresh');
+    }
+
+    public function hapusKomen($id_komentar)
+    {
+
+        $this->Komentar_model->hapusKomentar($id_komentar);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('elektro/detail/', 'refresh');
+    }
+
+    public function like($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Elektro_model->getrow('forum_elektro', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 2,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Elektro_model->Like($insert);
+    }
+
+    public function unlike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Elektro_model->getrow('forum_elektro', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 2,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Elektro_model->unLike($data);
+    }
+
+    public function dislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Elektro_model->getrow('forum_elektro', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 2,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Elektro_model->disLike($insert);
+    }
+
+    public function undislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Elektro_model->getrow('forum_elektro', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 2,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Elektro_model->undisLike($data);
     }
 }

@@ -29,6 +29,8 @@ class Fib extends CI_Controller
         $data['fib'] = $this->Fib_model->getFibById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
+
+        $data['komentar'] = $this->Fib_model->getAllKomentar();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('fib/detail', $data);
@@ -49,6 +51,8 @@ class Fib extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         } else {
             $insert = [
+                'id_kategori' => 4,
+                'user_id' => $this->session->userdata('user_id'),
                 'username' =>  $this->session->userdata('username'),
                 'nama_thread' => $this->input->post('nama_thread', true),
                 'isi' => $this->input->post('isi', true)
@@ -100,5 +104,38 @@ class Fib extends CI_Controller
         $this->Fib_model->hapusDataFib($id_thread);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('fib');
+    }
+
+    public function kirimKomen($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+
+
+        $nama_thread = $this->Fib_model->getrow('forum_fib', $where, 'nama_thread');
+        $this->form_validation->set_rules('isi_komentar', 'Komentar', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('fib/detail',);
+            $this->load->view('templates/rightsidebar');
+        } else
+            $insert = [
+                'id_kategori' => 4,
+                'user_id' => $this->session->userdata('user_id'),
+                'username' =>  $this->session->userdata('username'),
+                'id_thread' => $id_thread,
+                'nama_thread' => $nama_thread->nama_thread,
+                'isi_komentar' => $this->input->post('isi_komentar', true),
+            ];
+        $this->Fib_model->tambahKomentar($insert);
+        redirect('fib/detail/' . $id_thread, 'refresh');
+    }
+
+    public function hapusKomen($id_komentar)
+    {
+
+        $this->Fib_model->hapusKomentar($id_komentar);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('fib/detail/', 'refresh');
     }
 }

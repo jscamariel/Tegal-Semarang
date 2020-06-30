@@ -4,10 +4,9 @@ class Home_model extends CI_model
 {
     public function getAllHome()
     {
-        $this->db->select('home.*');
-        $this->db->from('home');
-        $this->db->join('user', 'user.username =  home.username');
-        $query = $this->db->get();
+        $this->db->order_by('id_thread', 'DESC');
+
+        $query = $this->db->get('home');
         return $query->result_array();
     }
 
@@ -45,5 +44,30 @@ class Home_model extends CI_model
 
         $this->db->where('id_thread', $this->input->post('id_thread'));
         $this->db->update('home', $data);
+    }
+
+    public function getrow($table, $where)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function tambahKomentarHome($insert)
+    {
+        $this->db->insert('komentar', $insert);
+    }
+
+    public function getAllKomentar()
+    {
+        return $this->db->get('komentar')->result_array();
+    }
+
+    public function hapusKomentar($id_komentar)
+    {
+        $this->db->where('id_komentar', $id_komentar);
+        $this->db->delete('komentar');
     }
 }

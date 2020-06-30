@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dinusforum">
+<<<<<<< HEAD:DinusForum Jessica/DinusForum/app/src/main/AndroidManifest.xml
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+=======
+>>>>>>> 2edf001d2fb4aec75fb09b6a65c095b1fdd09087:DinusForum/app/src/main/AndroidManifest.xml
 
     <application
         android:allowBackup="true"
@@ -12,6 +15,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+<<<<<<< HEAD:DinusForum Jessica/DinusForum/app/src/main/AndroidManifest.xml
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".CommentRecyclerAdapter"></activity>
@@ -21,6 +25,19 @@
         <activity android:name=".EditData" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Login">
+=======
+        android:theme="@style/AppTheme">
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ForumFik" />
+        <activity android:name=".MainActivity">
+>>>>>>> 2edf001d2fb4aec75fb09b6a65c095b1fdd09087:DinusForum/app/src/main/AndroidManifest.xml
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -50,7 +50,7 @@
         <div class="card">
 
             <div class="card-body">
-                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>">
+                <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar_profile']; ?>">
                 <h5 class="card-title"><?= $or['username']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?= $or['timestamp'] ?></h6>
 

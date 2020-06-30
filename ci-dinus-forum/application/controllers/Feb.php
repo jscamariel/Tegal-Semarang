@@ -29,6 +29,7 @@ class Feb extends CI_Controller
         $data['feb'] = $this->Feb_model->getFebById($id_thread);
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
+        $data['komentar'] = $this->Feb_model->getAllKomentar();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('feb/detail', $data);
@@ -49,6 +50,8 @@ class Feb extends CI_Controller
             $this->load->view('templates/rightsidebar', $data, $data);
         } else {
             $insert = [
+                'id_kategori' => 3,
+                'user_id' => $this->session->userdata('user_id'),
                 'username' =>  $this->session->userdata('username'),
                 'nama_thread' => $this->input->post('nama_thread', true),
                 'isi' => $this->input->post('isi', true)
@@ -101,5 +104,38 @@ class Feb extends CI_Controller
         $this->Feb_model->hapusDataFeb($id_thread);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('feb');
+    }
+
+    public function kirimKomen($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+
+
+        $nama_thread = $this->Feb_model->getrow('forum_feb', $where, 'nama_thread');
+        $this->form_validation->set_rules('isi_komentar', 'Komentar', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('feb/detail',);
+            $this->load->view('templates/rightsidebar');
+        } else
+            $insert = [
+                'id_kategori' => 3,
+                'user_id' => $this->session->userdata('user_id'),
+                'username' =>  $this->session->userdata('username'),
+                'id_thread' => $id_thread,
+                'nama_thread' => $nama_thread->nama_thread,
+                'isi_komentar' => $this->input->post('isi_komentar', true),
+            ];
+        $this->Feb_model->tambahKomentar($insert);
+        redirect('feb/detail/' . $id_thread, 'refresh');
+    }
+
+    public function hapusKomen($id_komentar)
+    {
+
+        $this->Feb_model->hapusKomentar($id_komentar);
+        $this->session->set_flashdata('flash', 'Dihapus');
+        redirect('feb/detail/', 'refresh');
     }
 }

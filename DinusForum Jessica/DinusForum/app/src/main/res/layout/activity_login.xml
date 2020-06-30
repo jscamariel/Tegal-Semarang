@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+<<<<<<<< HEAD:DinusForum Jessica/DinusForum/app/src/main/res/layout/activity_login.xml
     tools:context=".Login">
 
     <LinearLayout
@@ -93,5 +95,127 @@
             android:textAlignment="center"></TextView>
     </LinearLayout>
 
+========
+    tools:context=".MyAccountFragment"
+    android:gravity="center">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="222dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_account_circle_black_24dp" />
+=======
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/youtlogo" />
+
+>>>>>>> 2edf001d2fb4aec75fb09b6a65c095b1fdd09087
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="monospace"
+<<<<<<< HEAD
+        android:background="@drawable/kotak"
+        android:text="Username"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="monospace"
+        android:background="@drawable/kotak"
+        android:text="Password"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="monospace"
+        android:background="@drawable/kotak"
+        android:text="Email"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D50000"
+        android:text="Log Out"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="150dp" />
+>>>>>>>> 2edf001d2fb4aec75fb09b6a65c095b1fdd09087:DinusForum/app/src/main/res/layout/fragment_my_account.xml
+=======
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:weightSum="3"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:background="@drawable/kotak"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Username"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:textSize="15sp"
+                android:textColor="#000000"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:hint="Password"
+                android:background="@drawable/kotak"
+                android:layout_margin="10dp"
+                android:textSize="15sp"
+                android:textColor="#000000"/>
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/ButtonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="7dp"
+        android:background="#008BFA"/>
+    <Button
+        android:id="@+id/ButtonRegister1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Register"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+>>>>>>> 2edf001d2fb4aec75fb09b6a65c095b1fdd09087
 
 </LinearLayout>

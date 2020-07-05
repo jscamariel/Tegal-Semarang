@@ -31,7 +31,7 @@ public class SearchFragment extends Fragment {
     private  LinearLayout foto;
     private  LinearLayout game;
     public SearchFragment() {
-        // Required empty public constructor
+
 
 
 

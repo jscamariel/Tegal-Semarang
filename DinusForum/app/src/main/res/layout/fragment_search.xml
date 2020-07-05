@@ -21,8 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/backsearch"
-                android:queryHint="ketik disini" />
+                android:queryHint="ketik disini"
+                android:background="@drawable/backsearch"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

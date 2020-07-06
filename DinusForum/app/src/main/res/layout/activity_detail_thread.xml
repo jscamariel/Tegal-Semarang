@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailThread"
+    android:padding="5dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:background="#FFFFFF"
+            android:gravity="center_horizontal"
+            android:padding="5dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="74dp"
+                android:layout_height="71dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_person_black_24dp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="149dp"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2"
+                android:gravity="left|center"
+                android:text="Geraldo Lazarus"
+                android:textColor="#000000"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_more_vert_black_24dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:padding="2dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Ganti Foto Profil"
+                android:layout_marginLeft="10dp"
+                android:textSize="30sp"
+                android:gravity="left|center"
+                android:textColor="#000000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="2020-1-6, 20:23:07"
+                android:layout_marginLeft="10dp"
+                android:textSize="17sp"
+                android:gravity="left|center"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@drawable/kucing"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#AAAAAA" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_thumb_up_black_24dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_thumb_down_black_24dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:hint="Tambah Komentar"
+                    android:padding="10dp"
+                    android:background="@drawable/bglingkaran"/>
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_textsms_black_24dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:text="7"
+                android:textColor="#232323"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:text=" Komentar"
+                android:textColor="#232323"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/listkomentar"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

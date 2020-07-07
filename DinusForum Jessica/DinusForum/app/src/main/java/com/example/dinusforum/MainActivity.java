@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        welcome_name = findViewById(R.id.welcome);
+        //welcome_name = findViewById(R.id.welcome);
         DataUser user = SharedPrefManager.getInstance(this).getDataUser();
-        welcome_name.setText("Welcome: "+user.getUsername());
+        //welcome_name.setText("Welcome: "+user.getUsername());
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListerner);
 

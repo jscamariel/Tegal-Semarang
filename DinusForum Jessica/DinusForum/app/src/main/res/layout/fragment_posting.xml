@@ -72,10 +72,11 @@
                     android:layout_weight="1"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_format_align_justify_black_24dp"/>
-                <ImageView
+                <ImageButton
                     android:layout_width="50dp"
                     android:layout_weight="1"
                     android:layout_height="50dp"
+                    android:id="@+id/tambah_gambar"
                     android:src="@drawable/ic_image_black_24dp"/>
 
             </LinearLayout>
@@ -90,6 +91,11 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:padding="10dp"
                 android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/tampilkan_gambar"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
 
             <Button
                 android:id="@+id/done"

@@ -108,7 +108,8 @@ public class HomeFragment extends Fragment {
                                             data.getString("id_thread"),
                                             data.getString("username"),
                                             data.getString("nama_thread"),
-                                            data.getString("isi")
+                                            data.getString("isi"),
+                                            data.getString("gambar")
                                     );
                                     arrayList.add(item);
                                 }

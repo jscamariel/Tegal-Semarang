@@ -1,11 +1,22 @@
 package com.example.dinusforum;
 
+import android.media.Image;
+
 public class Data {
     public String username;
     public String id_thread;
     public String isi;
     public String nama_thread ;
+    public String gambar;
     //timestamp
+
+    public String getGambar(){
+        return gambar;
+    }
+
+    public void setGambar(String gambar){
+        this.gambar=gambar;
+    }
 
     public String getUsername() {
         return username;
@@ -23,11 +34,12 @@ public class Data {
         return nama_thread;
     }
 
-    public Data(String id_thread, String username, String nama_thread, String isi){
+    public Data(String id_thread, String username, String nama_thread, String isi, String gambar){
         this.id_thread = id_thread;
         this.username = username;
         this.nama_thread = nama_thread;
         this.isi = isi;
+        this.gambar = gambar;
     }
 
     public void setUsername(String username) {

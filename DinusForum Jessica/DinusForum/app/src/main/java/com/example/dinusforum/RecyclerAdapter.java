@@ -3,12 +3,14 @@ package com.example.dinusforum;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +60,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.nama_thread.setText(model.getNama_thread());
         holder.isi.setText(model.getIsi());
 
+        if(model.getGambar().isEmpty()){
+            holder.gambar.setImageResource(R.drawable.ic_add_black_24dp);
+        }else{
+            Picasso.get().load(model.getGambar()).into(holder.gambar);
+        }
+
+
+
         if(model.getUsername().equals(holder.user.getUsername()) ){
             holder.btn_update.setVisibility(View.VISIBLE);
             holder.btn_delete.setVisibility(View.VISIBLE);
@@ -89,6 +100,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView id_thread, username, nama_thread, isi;
+        ImageView gambar;
         Button btn_update, btn_delete;
         Data model;
         Comment model2;
@@ -100,8 +112,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             username = (TextView) itemView.findViewById(R.id.username);
             nama_thread = (TextView) itemView.findViewById(R.id.nama_thread);
             isi = (TextView) itemView.findViewById(R.id.isi);
+            gambar = (ImageView) itemView.findViewById(R.id.image);
             btn_update = (Button) itemView.findViewById(R.id.btn_update);
             btn_delete = (Button) itemView.findViewById(R.id.btn_delete);
+
 
 
             btn_update.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +126,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     lempar.putExtra("username", model.getUsername());
                     lempar.putExtra("nama_thread", model.getNama_thread());
                     lempar.putExtra("isi", model.getIsi());
+                    lempar.putExtra("gambar",model.getGambar());
                     activity.startActivity(lempar);
                 }
             });

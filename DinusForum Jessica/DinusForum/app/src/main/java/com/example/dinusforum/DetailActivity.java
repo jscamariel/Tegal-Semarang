@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -29,7 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     EditText editTextComment;
     EditText editTextUsername;
     EditText editTextNamaThread;
-    Button btnAddComment;
+    ImageButton btnAddComment;
     String username, nama_thread, comment;
 
     RecyclerView RvComment;

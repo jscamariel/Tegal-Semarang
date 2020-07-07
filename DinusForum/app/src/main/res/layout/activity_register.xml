@@ -1,166 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2196F3"
+    android:orientation="vertical"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".RegisterActivity"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="70dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
         android:orientation="vertical"
-        android:padding="5dp"
-        android:gravity="center_horizontal">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/youtlogo"/>
+        android:padding="20dp"
+        android:id="@+id/relativeLayout">
 
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="monospace"
-            android:text="Register"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20sp" />
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Nama"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <EditText
-                android:maxWidth="140sp"
-                android:layout_height="40dp"
-                android:background="@drawable/kotak"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_vertical"/>
-        </TableRow>
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Jenis Kelamin"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <RadioGroup >
-                <RadioButton
-                    android:text="Pria"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
-                <RadioButton
-                    android:text="Perempuan"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-                <RadioButton
-                    android:text="Lainnya"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-            </RadioGroup>
-        </TableRow>
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Email"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <EditText
-                android:maxWidth="140sp"
-                android:layout_height="40dp"
-                android:background="@drawable/kotak"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_vertical"/>
-        </TableRow>
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Tahun Angkatan"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <EditText
-                android:maxWidth="140sp"
-                android:layout_height="40dp"
-                android:background="@drawable/kotak"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_vertical"/>
-        </TableRow>
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Jurusan"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <Spinner
-                android:entries="@array/Array_jurusan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </TableRow>
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Username"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <EditText
-                android:maxWidth="140sp"
-                android:layout_height="40dp"
-                android:background="@drawable/kotak"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_vertical"/>
-        </TableRow>
-        <TableRow
-            android:baselineAligned="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
-            <TextView
-                android:text="Password"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:textColor="#000000" />
-            <EditText
-                android:maxWidth="140sp"
-                android:layout_height="40dp"
-                android:background="@drawable/kotak"
-                android:layout_width="match_parent"
-                android:layout_gravity="center_vertical"/>
-        </TableRow>
-        <Button
-            android:id="@+id/ButtonRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#008BFA"
-            android:text="Register"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="vertical"
+            android:paddingTop="30dp">
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
 
-</ScrollView>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  Username"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  Nim"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  Email"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="  Password"
+                    android:inputType="numberPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/create_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingTop="5dp"
+                android:text="Have a account? Login" />
+
+
+            <Button
+                android:id="@+id/buttonRegis"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="22dp"
+                android:background="#3F51B5"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/user_profile_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/login_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bglingkaran"
+        android:elevation="4dp"
+        android:src="@drawable/ic_person" />
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:gravity="center_horizontal"
+        android:text="Register Dinus Forum"
+        android:textColor="#fff"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

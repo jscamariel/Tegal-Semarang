@@ -22,7 +22,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-6">
-                            <button class="far fa-thumbs-up liked likebtn" data="<?= $elektro['id_thread'] ?>" title="Like"> Like</button>
+                            <button class="far fa-thumbs-up liked likebtn" data="<?= $elektro['id_thread'] ?>" title="Like"> Like <?= $like ?></button>
                         </div>
                         <div class="col-sm-6">
                             <button class="material-icons disliked dislikebtn" data="<?= $elektro['id_thread'] ?>" title="Dislike">thumb_down</button>
@@ -51,7 +51,7 @@
             <div class="card mt-1">
                 <div class="card-body">
 
-                    <h6 class="card-subtitle mb-2 text-muted"> <?= $result ?>Komentar </h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> Komentar </h6>
 
                     <?php foreach ($komentar as $komen) : ?>
 

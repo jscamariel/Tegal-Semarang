@@ -42,6 +42,7 @@ class Elektro extends CI_Controller
         $data['komentar'] = $this->Komentar_model->getAllKomentar();
 
         $data['result'] = $this->db->count_all('komentar');
+        $data['like'] = $this->db->count_all('tb_vote');
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('elektro/detail', $data);

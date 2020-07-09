@@ -46,47 +46,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="3 untuk Teknik Electro"
+                android:text="3 untuk Ilmu Budaya"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="4 untuk Ilmu Budaya"
+                android:text="4 untuk Kesehatan"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="5 untuk Kesehatan"
+                android:text="5 untuk Olahraga"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="6 untuk Olahraga"
+                android:text="6 untuk Fotografi"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="7 untuk Fotografi"
+                android:text="7 untuk Game"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="8 untuk Game"
+                android:text="8 untuk Pecinta Alam"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="9 untuk Pecinta Alam"
+                android:text="9 untuk Pecinta Hewan"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="10 untuk Pecinta Hewan"
+                android:text="10 untuk Otomotif"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:text="11 untuk Otomotif"
+                android:text="11 untuk Teknik Elektro"
                 android:textSize="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

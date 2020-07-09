@@ -114,6 +114,7 @@ public class EditData extends AppCompatActivity {
                     updatePecintaalam();
                     updatePecintahewan();
                     updateOtomotif();
+
                 }
             }
         });

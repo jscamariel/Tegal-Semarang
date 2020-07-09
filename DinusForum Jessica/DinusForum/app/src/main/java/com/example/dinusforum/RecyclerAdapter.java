@@ -37,9 +37,9 @@ import java.util.Map;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<Data> arrayList ;
+    private ArrayList<DataPapan> arrayList ;
     private Activity activity;
-    public RecyclerAdapter(Activity activity, ArrayList<Data> arrayList){
+    public RecyclerAdapter(Activity activity, ArrayList<DataPapan> arrayList){
         this.activity=activity;
         this.arrayList = arrayList;
 
@@ -53,11 +53,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(final RecyclerAdapter.MyViewHolder holder, final int position) {
-        Data model = arrayList.get(position);
+        DataPapan model = arrayList.get(position);
 
-        holder.id_thread.setText(model.getId_thread());
-        holder.username.setText(model.getUsername());
-        holder.nama_thread.setText(model.getNama_thread());
+        holder.id_thread.setText(model.getId());
+        holder.nama_thread.setText(model.getJudul());
         holder.isi.setText(model.getIsi());
 
         if(model.getGambar().isEmpty()){
@@ -67,25 +66,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         }
 
 
-
-        if(model.getUsername().equals(holder.user.getUsername()) ){
-            holder.btn_update.setVisibility(View.VISIBLE);
-            holder.btn_delete.setVisibility(View.VISIBLE);
-        }else {
-            holder.btn_update.setVisibility(View.GONE);
-            holder.btn_delete.setVisibility(View.GONE);
-        }
-
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.hapusData();
-                arrayList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, arrayList.size());
-                notifyDataSetChanged();
-            }
-        });
 
 
 
@@ -99,82 +79,34 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView id_thread, username, nama_thread, isi;
+        TextView id_thread, nama_thread, isi;
         ImageView gambar;
-        Button btn_update, btn_delete;
-        Data model;
+
+        DataPapan model;
         Comment model2;
         DataUser user = SharedPrefManager.getInstance(activity).getDataUser();
 
         public MyViewHolder(View itemView) {
             super(itemView);
             id_thread = (TextView) itemView.findViewById(R.id.id_thread);
-            username = (TextView) itemView.findViewById(R.id.username);
             nama_thread = (TextView) itemView.findViewById(R.id.nama_thread);
             isi = (TextView) itemView.findViewById(R.id.isi);
             gambar = (ImageView) itemView.findViewById(R.id.image);
-            btn_update = (Button) itemView.findViewById(R.id.btn_update);
-            btn_delete = (Button) itemView.findViewById(R.id.btn_delete);
 
-
-
-            btn_update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent lempar = new Intent(activity, EditData.class);
-                    lempar.putExtra("id_thread", model.getId_thread());
-                    lempar.putExtra("username", model.getUsername());
-                    lempar.putExtra("nama_thread", model.getNama_thread());
-                    lempar.putExtra("isi", model.getIsi());
-                    lempar.putExtra("gambar",model.getGambar());
-                    activity.startActivity(lempar);
-                }
-            });
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent moving = new Intent(activity, DetailActivity.class);
-                    moving.putExtra("id_thread",model.getId_thread());
-                    moving.putExtra("username", model.getUsername());
-                    moving.putExtra("nama_thread",model.getNama_thread());
+                    Intent moving = new Intent(activity, DetailBeritaActivity.class);
+                    moving.putExtra("id_thread",model.getId());
+                    moving.putExtra("nama_thread",model.getJudul());
                     moving.putExtra("isi",model.getIsi());
                     moving.putExtra("gambar",model.getGambar());
                     activity.startActivity(moving);
                 }
             });
         }
-        public void hapusData(){
-            AndroidNetworking.delete(DbContract.SERVER_DELETE_URL)
-                    .addBodyParameter("id_thread", model.getId_thread())
-                    .setTag("test")
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            // do anything with response
-                            try {
-                                if(response.getString("status").equals("true") ){
-                                    Toast.makeText(activity, "Data berhasil dihapus..."
-                                            ,Toast.LENGTH_LONG).show();
 
-                                }else {
-                                    Toast.makeText(activity, "Data gagal dihapus!"
-                                            ,Toast.LENGTH_LONG).show();
-                                }
-                            }catch (JSONException e){
-                                Toast.makeText(activity, "Kesalahan hapus, Kode 1"
-                                        ,Toast.LENGTH_LONG).show();
-                            }
-                        }
-                        @Override
-                        public void onError(ANError error) {
-                            // handle error
-                            Log.d("ErrorHapusData",""+error.getErrorDetail());
-                        }
-                    });
-        }
     }
 
 }

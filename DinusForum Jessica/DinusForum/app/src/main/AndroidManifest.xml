@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ForumOtomotif"></activity>
+        <activity android:name=".ForumElektro"></activity>
+        <activity android:name=".ForumOtomotif" />
         <activity android:name=".ForumPecintahewan" />
         <activity android:name=".ForumPecintaalam" />
         <activity android:name=".ForumGame" />
@@ -24,6 +25,7 @@
         <activity android:name=".ForumFib" />
         <activity android:name=".ForumFeb" />
         <activity android:name=".DetailActivity" />
+        <activity android:name=".DetailBeritaActivity" />
         <activity android:name=".Register" />
         <activity android:name=".ForumFik" />
         <activity android:name=".EditData" />

@@ -85,7 +85,8 @@ public class SearchFragment extends Fragment {
         ft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM FT", Toast.LENGTH_SHORT).show();
+                Intent moving11 = new Intent(getActivity(),ForumElektro.class);
+                startActivity(moving11);
             }
         });
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".ForumElektro">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
@@ -11,14 +11,12 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:weightSum="2">
-
         <SearchView
             android:id="@+id/searchHome"
+            android:layout_weight="1"
             android:layout_width="255dp"
             android:layout_height="65dp"
-            android:layout_weight="1"
-            android:autofillHints="Cari berita"
-            android:background="@drawable/backsearch" />
+            android:background="@drawable/backsearch"/>
         <ImageButton
             android:layout_alignParentRight="true"
             android:layout_width="70dp"
@@ -26,22 +24,13 @@
             android:layout_height="70dp"
             android:src="@drawable/ic_add_black_24dp"/>
 
-        <TextView
-            android:id="@+id/beritahighlight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/searchHome"
-            android:textColor="#000000"
-            android:textSize="30dp"
-            android:layout_margin="5dp"
-            android:text="Berita"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler"
+            android:id="@+id/recycler_elektro"
             android:layout_margin="5dp"
-            android:layout_below="@id/beritahighlight">
+            android:layout_below="@id/searchHome">
         </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 

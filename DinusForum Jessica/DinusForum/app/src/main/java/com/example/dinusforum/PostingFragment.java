@@ -132,11 +132,13 @@ public class PostingFragment extends Fragment {
                     startActivity(moveon10);
                 }else{
                     simpanData();
-                    Fragment homeFragment = new HomeFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, homeFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    Intent moveon11 = new Intent(getActivity(),ForumElektro.class);
+                    startActivity(moveon11);
+                    //Fragment homeFragment = new HomeFragment();
+                    //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    //transaction.replace(R.id.fragment_container, homeFragment);
+                    //transaction.addToBackStack(null);
+                    //transaction.commit();
                 }
 
             }

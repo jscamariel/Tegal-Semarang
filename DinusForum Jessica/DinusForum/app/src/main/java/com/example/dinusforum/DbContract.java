@@ -20,4 +20,6 @@ public class DbContract {
     public static final String SERVER_GET_PECINTAALAM_URL = "http://192.168.100.6/ci-dinus-forum-server/api/pecintaalam/pecintaalam";
     public static final String SERVER_GET_PECINTAHEWAN_URL = "http://192.168.100.6/ci-dinus-forum-server/api/pecintahewan/pecintahewan";
     public static final String SERVER_GET_OTOMOTIF_URL = "http://192.168.100.6/ci-dinus-forum-server/api/otomotif/otomotif";
+
+    public static final String SERVER_GET_BERITA_URL = "http://192.168.100.6/ci-dinus-forum-server/api/berita/berita";
 }

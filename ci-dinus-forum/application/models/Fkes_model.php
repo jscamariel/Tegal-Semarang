@@ -2,12 +2,18 @@
 
 class Fkes_model extends CI_model
 {
-    public function getAllFkes()
+    public function getAllFkes($limit, $start)
     {
         $this->db->order_by('id_thread', 'DESC');
 
-        $query = $this->db->get('forum_fkes');
+        $query = $this->db->get('forum_fkes', $limit, $start);
         return $query->result_array();
+    }
+
+
+    public function jumlahDataFkes()
+    {
+        return $this->db->get('forum_fkes')->num_rows();
     }
 
     public function tambahDataFkes($insert)
@@ -57,9 +63,36 @@ class Fkes_model extends CI_model
         return $this->db->get('komentar')->result_array();
     }
 
+    public function jumlahKomen($id_thread)
+    {
+        $this->db->where('id_thread ', $id_thread);
+        $query = $this->db->get('komentar');
+        return $query->num_rows();
+    }
+
     public function hapusKomentar($id_komentar)
     {
         $this->db->where('id_komentar', $id_komentar);
         $this->db->delete('komentar');
+    }
+
+    public function Like($insert)
+    {
+        $this->db->insert('tb_vote', $insert);
+    }
+
+    public function unLike($data)
+    {
+        $this->db->delete('tb_vote', $data);
+    }
+
+    public function disLike($insert)
+    {
+        $this->db->insert('tb_vote', $insert);
+    }
+
+    public function undisLike($data)
+    {
+        $this->db->delete('tb_vote', $data);
     }
 }

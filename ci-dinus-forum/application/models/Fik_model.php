@@ -2,12 +2,18 @@
 
 class Fik_model extends CI_model
 {
-    public function getAllFIk()
+    public function getAllFIk($limit, $start)
     {
         $this->db->order_by('id_thread', 'DESC');
 
-        $query = $this->db->get('forum_fik');
+        $query = $this->db->get('forum_fik', $limit, $start);
         return $query->result_array();
+    }
+
+
+    public function jumlahDataFik()
+    {
+        return $this->db->get('forum_fik')->num_rows();
     }
 
     public function tambahDataFik($insert)
@@ -58,9 +64,36 @@ class Fik_model extends CI_model
         return $this->db->get('komentar')->result_array();
     }
 
+    public function jumlahKomen($id_thread)
+    {
+        $this->db->where('id_thread ', $id_thread);
+        $query = $this->db->get('komentar');
+        return $query->num_rows();
+    }
+
     public function hapusKomentar($id_komentar)
     {
         $this->db->where('id_komentar', $id_komentar);
         $this->db->delete('komentar');
+    }
+
+    public function Like($insert)
+    {
+        $this->db->insert('tb_vote', $insert);
+    }
+
+    public function unLike($data)
+    {
+        $this->db->delete('tb_vote', $data);
+    }
+
+    public function disLike($insert)
+    {
+        $this->db->insert('tb_vote', $insert);
+    }
+
+    public function undisLike($data)
+    {
+        $this->db->delete('tb_vote', $data);
     }
 }

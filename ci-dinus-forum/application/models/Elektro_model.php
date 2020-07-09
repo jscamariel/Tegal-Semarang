@@ -2,13 +2,19 @@
 
 class Elektro_model extends CI_model
 {
-    public function getAllElektro()
+    public function getAllElektro($limit, $start)
     {
         $this->db->order_by('id_thread', 'DESC');
 
-        $query = $this->db->get('forum_elektro');
+        $query = $this->db->get('forum_elektro', $limit, $start);
         return $query->result_array();
         // return $this->db->get('forum_elektro')->result_array();  
+    }
+
+
+    public function jumlahDataElektro()
+    {
+        return $this->db->get('forum_elektro')->num_rows();
     }
 
     public function getUser()
@@ -45,6 +51,27 @@ class Elektro_model extends CI_model
 
         $this->db->where('id_thread', $this->input->post('id_thread'));
         $this->db->update('forum_elektro', $data);
+    }
+
+    public function jumlahKomen($id_thread)
+    {
+        $this->db->where('id_thread ', $id_thread);
+        $query = $this->db->get('komentar');
+        return $query->num_rows();
+    }
+
+    public function jumlahLike($id_thread)
+    {
+        $this->db->where('id_thread >=', $id_thread);
+        $query = $this->db->get('tb_vote');
+        return $query->num_rows();
+    }
+
+    public function jumlahDislike($id_thread)
+    {
+        $this->db->where('id_thread >=', $id_thread);
+        $query = $this->db->get('tb_vote');
+        return $query->num_rows();
     }
 
     public function getrow($table, $where)

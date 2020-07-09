@@ -25,6 +25,7 @@
         <div class="card">
 
             <div class="card-body">
+
                 <img class="img-profile rounded-circle float-left mr-2" src="<?= base_url('assets/img/profile/') . $user['gambar_profile']; ?>">
 
 
@@ -49,6 +50,8 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <br>
+    <?= $this->pagination->create_links(); ?>
 </div>
 
 <script !src="">

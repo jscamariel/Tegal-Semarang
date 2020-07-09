@@ -9,12 +9,22 @@ class Fib extends CI_Controller
         $this->load->model('Berita_model');
         $this->load->model('Event_model');
         $this->load->library('form_validation');
+        $this->load->library('pagination');
     }
 
     public function index()
     {
+        $config['base_url'] = 'http://localhost/ci-dinus-forum/fib/index/';
+        $config['total_rows'] = $this->Fib_model->jumlahDataFib();
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 10;
+
+        $data['start'] = $this->uri->segment(3);
+        $data['fib'] = $this->Fib_model->getAllFib($config['per_page'], $data['start']);
+
+        $this->pagination->initialize($config);
+
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['fib'] = $this->Fib_model->getAllFib();
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
         $this->load->view('templates/header', $data);
@@ -31,6 +41,7 @@ class Fib extends CI_Controller
         $data['event'] = $this->Event_model->getAllEvent();
 
         $data['komentar'] = $this->Fib_model->getAllKomentar();
+        $data['jumlah_komen'] = $this->Fib_model->jumlahKomen($id_thread);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('fib/detail', $data);
@@ -137,5 +148,69 @@ class Fib extends CI_Controller
         $this->Fib_model->hapusKomentar($id_komentar);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('fib/detail/', 'refresh');
+    }
+
+    public function like($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fib_model->getrow('forum_fib', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 4,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Fib_model->Like($insert);
+    }
+
+    public function unlike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fib_model->getrow('forum_fib', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 4,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Fib_model->unLike($data);
+    }
+
+    public function dislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fib_model->getrow('forum_fib', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 4,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Fib_model->disLike($insert);
+    }
+
+    public function undislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fib_model->getrow('forum_fib', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 4,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Fib_model->undisLike($data);
     }
 }

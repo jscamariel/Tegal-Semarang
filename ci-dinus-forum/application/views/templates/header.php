@@ -52,7 +52,7 @@
 
       <div class="">
         <div class="">
-          <form action="" method="post">
+          <form action="<?= base_url('pencarian/index') ?>" method="post">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Cari disini.." name="keyword">
               <div class="input-group-append">

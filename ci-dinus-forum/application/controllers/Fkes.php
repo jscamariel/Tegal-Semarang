@@ -9,12 +9,21 @@ class Fkes extends CI_Controller
         $this->load->model('Berita_model');
         $this->load->model('Event_model');
         $this->load->library('form_validation');
+        $this->load->library('pagination');
     }
 
     public function index()
     {
+        $config['base_url'] = 'http://localhost/ci-dinus-forum/fkes/index/';
+        $config['total_rows'] = $this->Fkes_model->jumlahDataFkes();
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 10;
+
+        $data['start'] = $this->uri->segment(3);
+        $data['fkes'] = $this->Fkes_model->getAllFkes($config['per_page'], $data['start']);
+        $this->pagination->initialize($config);
+
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['fkes'] = $this->Fkes_model->getAllFkes();
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
         $this->load->view('templates/header', $data);
@@ -30,6 +39,7 @@ class Fkes extends CI_Controller
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
         $data['komentar'] = $this->Fkes_model->getAllKomentar();
+        $data['jumlah_komen'] = $this->Fkes_model->jumlahKomen($id_thread);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('fkes/detail', $data);
@@ -137,5 +147,69 @@ class Fkes extends CI_Controller
         $this->Fkes_model->hapusKomentar($id_komentar);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('fkes/detail/', 'refresh');
+    }
+
+    public function like($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fkes_model->getrow('forum_fkes', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 6,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Fkes_model->Like($insert);
+    }
+
+    public function unlike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fkes_model->getrow('forum_fkes', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 6,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Fkes_model->unLike($data);
+    }
+
+    public function dislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fkes_model->getrow('forum_fkes', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 6,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Fkes_model->disLike($insert);
+    }
+
+    public function undislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fkes_model->getrow('forum_fkes', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 6,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Fkes_model->undisLike($data);
     }
 }

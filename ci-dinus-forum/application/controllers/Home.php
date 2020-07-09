@@ -9,13 +9,22 @@ class Home extends CI_Controller
         $this->load->model('Berita_model');
         $this->load->model('Event_model');
         $this->load->library('form_validation');
+        $this->load->library('pagination');
     }
 
     public function index()
     {
+        $config['base_url'] = 'http://localhost/ci-dinus-forum/home/index/';
+        $config['total_rows'] = $this->Home_model->jumlahDataHome();
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 10;
+
+        $data['start'] = $this->uri->segment(3);
+        $data['home'] = $this->Home_model->getAllHome($config['per_page'], $data['start']);
+        $this->pagination->initialize($config);
+
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Beranda';
-        $data['home'] = $this->Home_model->getAllHome();
         if ($this->input->post('keyword')) {
             //$data['Home'] = $this->Home_model->cariDataHome();
         }
@@ -34,6 +43,8 @@ class Home extends CI_Controller
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
         $data['komentar'] = $this->Home_model->getAllKomentar();
+
+        $data['jumlah_komen'] = $this->Home_model->jumlahKomen($id_thread);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('home/detail', $data);
@@ -144,5 +155,69 @@ class Home extends CI_Controller
         $this->Home_model->hapusKomentar($id_komentar);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('home/detail/', 'refresh');
+    }
+
+    public function like($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Home_model->getrow('home', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 1,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Home_model->Like($insert);
+    }
+
+    public function unlike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Home_model->getrow('home', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 1,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Home_model->unLike($data);
+    }
+
+    public function dislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Home_model->getrow('home', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 1,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Home_model->disLike($insert);
+    }
+
+    public function undislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Home_model->getrow('home', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 1,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Home_model->undisLike($data);
     }
 }

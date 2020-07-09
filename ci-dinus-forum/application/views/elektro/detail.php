@@ -22,10 +22,12 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-6">
-                            <button class="far fa-thumbs-up liked likebtn" data="<?= $elektro['id_thread'] ?>" title="Like"> Like <?= $like ?></button>
+
+                            <button class="btn button liked likebtn" data="<?= $elektro['id_thread'] ?>" title="Like"> Like <?= $jumlah_like  ?></button>
+
                         </div>
                         <div class="col-sm-6">
-                            <button class="material-icons disliked dislikebtn" data="<?= $elektro['id_thread'] ?>" title="Dislike">thumb_down</button>
+                            <button class="btn button  disliked dislikebtn" data="<?= $elektro['id_thread'] ?>" title="Dislike">Dislike</button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +53,8 @@
             <div class="card mt-1">
                 <div class="card-body">
 
-                    <h6 class="card-subtitle mb-2 text-muted"> Komentar </h6>
+                    <h6 class="card-subtitle mb-2 text-muted"> <?= $jumlah_komen ?>Komentar </h6>
+
 
                     <?php foreach ($komentar as $komen) : ?>
 
@@ -100,7 +103,7 @@
             $.ajax({
                 url: '<?= base_url('elektro/unlike/') ?>' + id_thread,
                 success: function(result) {
-                    btn.html('<i class="far fa-thumbs-up"></i>');
+                    btn.html('<i class="far fa-thumbs-up">Like</i>');
                     btn.removeClass('unlikebtn');
                     btn.addClass('likebtn');
                 }
@@ -111,7 +114,7 @@
             $.ajax({
                 url: '<?= base_url('elektro/like/') ?>' + id_thread,
                 success: function(result) {
-                    btn.html('<i class="fas fa-thumbs-up"></i>');
+                    btn.html('<i class="fas fa-thumbs-up">Unlike</i>');
                     btn.removeClass('likebtn');
                     btn.addClass('unlikebtn');
                 }
@@ -128,7 +131,7 @@
             $.ajax({
                 url: '<?= base_url('elektro/undislike/') ?>' + id_thread,
                 success: function(result) {
-                    btn.html('<i class="material-icons">thumb_down</i>');
+                    btn.html('<i class="far fa-thumbs-down">Dislike</i>');
                     btn.removeClass('undislikebtn');
                     btn.addClass('dislikebtn');
                 }
@@ -139,7 +142,7 @@
             $.ajax({
                 url: '<?= base_url('elektro/dislike/') ?>' + id_thread,
                 success: function(result) {
-                    btn.html('<i class="material-icons">thumb_down</i>');
+                    btn.html('<i class="fas fa-thumbs-down">Undislike</i>');
                     btn.removeClass('dislikebtn');
                     btn.addClass('undislikebtn');
                 }

@@ -20,4 +20,6 @@
             </div>
         </div>
     <?php endforeach; ?>
+    <br>
+    <?= $this->pagination->create_links(); ?>
 </div>

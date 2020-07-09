@@ -9,13 +9,22 @@ class Fik extends CI_Controller
         $this->load->model('Berita_model');
         $this->load->model('Event_model');
         $this->load->library('form_validation');
+        $this->load->library('pagination');
     }
 
     public function index()
     {
+        $config['base_url'] = 'http://localhost/ci-dinus-forum/fik/index/';
+        $config['total_rows'] = $this->Fik_model->jumlahDataFik();
+        $data['total_rows'] = $config['total_rows'];
+        $config['per_page'] = 10;
+
+        $data['start'] = $this->uri->segment(3);
+        $data['fik'] = $this->Fik_model->getAllFik($config['per_page'], $data['start']);
+        $this->pagination->initialize($config);
+
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['judul'] = 'Kategori FIK';
-        $data['fik'] = $this->Fik_model->getAllFik();
         if ($this->input->post('keyword')) {
             //$data['elektro'] = $this->Elektro_model->cariDataElektro();
         }
@@ -34,6 +43,7 @@ class Fik extends CI_Controller
         $data['berita'] = $this->Berita_model->getAllBerita();
         $data['event'] = $this->Event_model->getAllEvent();
         $data['komentar'] = $this->Fik_model->getAllKomentar();
+        $data['jumlah_komen'] = $this->Fik_model->jumlahKomen($id_thread);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('fik/detail', $data);
@@ -142,5 +152,69 @@ class Fik extends CI_Controller
         $this->Fik_model->hapusKomentar($id_komentar);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('fik/detail/', 'refresh');
+    }
+
+    public function like($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fik_model->getrow('forum_fik', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 5,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Fik_model->Like($insert);
+    }
+
+    public function unlike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fik_model->getrow('forum_fik', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 5,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'liked' => 1
+        ];
+
+        $this->Fik_model->unLike($data);
+    }
+
+    public function dislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fik_model->getrow('forum_fik', $where, 'nama_thread');
+        $insert = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 5,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Fik_model->disLike($insert);
+    }
+
+    public function undislike($id_thread)
+    {
+        $where = array('id_thread' => $id_thread);
+        $nama_thread = $this->Fik_model->getrow('forum_fik', $where, 'nama_thread');
+        $data = [
+            'id_thread' => $id_thread,
+            'id_kategori' => 5,
+            'user_id' => $this->session->userdata('user_id'),
+            'username' =>  $this->session->userdata('username'),
+            'nama_thread' => $nama_thread->nama_thread,
+            'dislike' => 1
+        ];
+
+        $this->Fik_model->undisLike($data);
     }
 }

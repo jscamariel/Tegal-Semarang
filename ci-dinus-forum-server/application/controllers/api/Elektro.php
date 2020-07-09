@@ -28,7 +28,7 @@ class Elektro extends REST_Controller
             $this->response([
                 'status' => true,
                 'data' => $elektro
-            ], REST_Controller::HTTP_OK);
+            ], REST_Controller::HTTP_CREATED);
         }else{
             $this->response([
                 'status' => false,
@@ -51,7 +51,7 @@ class Elektro extends REST_Controller
                     'status' => true,
                     'id_thread' => $id_thread,
                     'message' => 'Berhasil Dihapus'
-                ], REST_Controller::HTTP_NO_CONTENT);
+                ], REST_Controller::HTTP_OK);
             }else{
                 $this->response([
                     'status' => false,
@@ -67,6 +67,7 @@ class Elektro extends REST_Controller
             'username' => $this->post('username'),
             'nama_thread' => $this->post('nama_thread'),
             'isi' => $this->post('isi'),
+            'gambar' => $this->post('gambar'),
             'timestamp' => $this->post('timestamp')
         ];
 
@@ -91,6 +92,7 @@ class Elektro extends REST_Controller
             'username' => $this->put('username'),
             'nama_thread' => $this->put('nama_thread'),
             'isi' => $this->put('isi'),
+            'gambar' => $this->put('gambar'),
             'timestamp' => $this->put('timestamp')
         ];
 
@@ -98,7 +100,7 @@ class Elektro extends REST_Controller
             $this->response([
                 'status' => true,
                 'message' => 'Data Berhasil Diupdate'
-            ], REST_Controller::HTTP_NO_CONTENT);
+            ], REST_Controller::HTTP_OK);
         }else{
             $this->response([
                 'status' => false,

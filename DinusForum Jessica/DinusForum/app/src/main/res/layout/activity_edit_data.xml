@@ -77,6 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="#000"
+                            android:focusable="false"
                             android:hint="username" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,16 +99,20 @@
                             android:id="@+id/ubah_image"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ubah foto" />
+                            android:background="#2196F3"
+                            android:text="Ubah foto"
+                            android:textColor="#FFFFFF" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-                            <Button
-                                android:id="@+id/btn_simpan"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:text="Simpan" />
+                    <Button
+                        android:id="@+id/btn_simpan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="#2196F3"
+                        android:text="Simpan"
+                        android:textColor="#FFFFFF" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -13,24 +13,72 @@ require APPPATH . 'libraries/Format.php';
       $this->load->model('user_model');
     }
 
+    public function user_put(){
+      $nim = $this->put('nim');
+        
+        $data = [
+            'nim' => $this->put('nim'),
+            'username' => $this->put('username'),
+            'password' => $this->put('password'),
+            'email' => $this->put('email')
+        ];
 
+        if($this->user_model->updateUser($data,$nim) > 0){
+            $this->response([
+                'status' => true,
+                'message' => 'Data Berhasil Diupdate'
+            ], REST_Controller::HTTP_OK);
+        }else{
+            $this->response([
+                'status' => false,
+                'message' => 'failed to update'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function user_get()
+    {       
+        $id = $this->get('id');
+        if($id===null){
+            $user = $this->user_model->getAllUser();
+        }else{
+            $user = $this->user_model->getAllUser($id);
+        }
+        
+
+        if($user){
+            $this->response([
+                'status' => true,
+                'data' => $user
+            ], REST_Controller::HTTP_CREATED);
+        }else{
+            $this->response([
+                'status' => false,
+                'message' => 'id not found'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
+        
+    }
     
 
     public function register_post(){
+      
       $username = $this->post('username');
+      $nim = $this->post('nim');
       $email = $this->post('email');
       $password = $this->post('password');
-      $registration = $this->user_model->register($username,$email,$password); 
+      $registration = $this->user_model->register($username,$nim,$email,$password); 
       if($registration){
         $this->response([
+          'error' => true,
           'status' => $registration,
           'message' => 'berhasil register'
       ], REST_Controller::HTTP_OK);
       }else{
         $this->response([
-          'status' => $registration,
+          'error' => false,
           'message' => 'gagal register'
-      ], REST_Controller::HTTP_BAD_REQUEST);
+      ], REST_Controller::HTTP_OK);
       }
      
 
@@ -45,7 +93,7 @@ require APPPATH . 'libraries/Format.php';
         $this->response([
           'status' => false,
           'message' => 'wrong username or password'
-      ], REST_Controller::HTTP_BAD_REQUEST);
+      ], REST_Controller::HTTP_OK);
       }else{
         $this->response([
           'status' => true,

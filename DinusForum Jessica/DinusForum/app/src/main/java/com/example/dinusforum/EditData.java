@@ -93,6 +93,8 @@ public class EditData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choose();
+                //Intent keHome = new Intent(getApplicationContext(),HomeFragment.class);
+                //startActivity(keHome);
             }
         });
         btn_simpan.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +104,17 @@ public class EditData extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Data tidak boleh kosong...", Toast.LENGTH_LONG).show();
                 }else {
                     update();
+                    updateFik();
+                    updateFeb();
+                    updateFib();
+                    updateFkes();
+                    updateOlahraga();
+                    updateFotografi();
+                    updateGame();
+                    updatePecintaalam();
+                    updatePecintahewan();
+                    updateOtomotif();
+
                 }
             }
         });
@@ -202,5 +215,384 @@ public class EditData extends AppCompatActivity {
                     }
                 });
     }
-
+    public void updateFik(){
+        AndroidNetworking.put(DbContract.SERVER_GET_FIK_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateFeb(){
+        AndroidNetworking.put(DbContract.SERVER_GET_FEB_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateFib(){
+        AndroidNetworking.put(DbContract.SERVER_GET_FIB_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateFkes(){
+        AndroidNetworking.put(DbContract.SERVER_GET_FKES_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateOlahraga(){
+        AndroidNetworking.put(DbContract.SERVER_GET_OLAHRAGA_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateFotografi(){
+        AndroidNetworking.put(DbContract.SERVER_GET_FOTOGRAFI_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateGame(){
+        AndroidNetworking.put(DbContract.SERVER_GET_GAME_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updatePecintaalam(){
+        AndroidNetworking.put(DbContract.SERVER_GET_PECINTAALAM_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updatePecintahewan(){
+        AndroidNetworking.put(DbContract.SERVER_GET_PECINTAHEWAN_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
+    public void updateOtomotif(){
+        AndroidNetworking.put(DbContract.SERVER_GET_OTOMOTIF_URL)
+                .addBodyParameter("id_thread", editText_id_thread.getText().toString())
+                .addBodyParameter("nama_thread",editText_nama_thread.getText().toString())
+                .addBodyParameter("isi", editText_isi.getText().toString())
+                .addBodyParameter("username", editText_username.getText().toString())
+                .addBodyParameter("gambar",get_image.getDrawable().toString())
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // do anything with response
+                        try {
+                            if(response.getString("status").equals("true") ){
+                                Toast.makeText(getApplicationContext(), "Data berhasil di update..."
+                                        ,Toast.LENGTH_LONG).show();
+                                Bundle bundle = new Bundle();
+                                HomeFragment fragmentB = new HomeFragment();
+                                bundle.putString("text", "berhasil");
+                                fragmentB.setArguments(bundle);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Data gagal di update!"
+                                        ,Toast.LENGTH_LONG).show();
+                            }
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), "Kesalahan update, Kode 1"
+                                    ,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                        Log.d("ErrorEditData",""+error.getErrorDetail());
+                    }
+                });
+    }
 }

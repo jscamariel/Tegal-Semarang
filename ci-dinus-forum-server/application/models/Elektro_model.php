@@ -4,7 +4,7 @@ class Elektro_model extends CI_model
 {
     public function getAllElektro($id_thread = null){
         if($id_thread===null){
-            $this->db->join('user', 'user.username =  forum_elektro.username');
+            //$this->db->join('user', 'user.username =  forum_elektro.username');
             return $this->db->get('forum_elektro')->result_array();  
             
         }else{

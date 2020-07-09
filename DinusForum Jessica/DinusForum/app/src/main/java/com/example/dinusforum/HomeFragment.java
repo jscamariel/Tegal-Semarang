@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recycler;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
-    ArrayList<Data> arrayList ;
+    ArrayList<DataPapan> arrayList ;
 
     View view;
 
@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void readDataFromServer(){
-        AndroidNetworking.get(DbContract.SERVER_GET_URL)
+        AndroidNetworking.get(DbContract.SERVER_GET_BERITA_URL)
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -104,10 +104,9 @@ public class HomeFragment extends Fragment {
                                 JSONArray jsonArray = response.getJSONArray("data");
                                 for (int i =0; i < jsonArray.length(); i++){
                                     JSONObject data = jsonArray.getJSONObject(i);
-                                    Data item = new Data(
-                                            data.getString("id_thread"),
-                                            data.getString("username"),
-                                            data.getString("nama_thread"),
+                                    DataPapan item = new DataPapan(
+                                            data.getString("id"),
+                                            data.getString("judul"),
                                             data.getString("isi"),
                                             data.getString("gambar")
                                     );

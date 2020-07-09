@@ -24,7 +24,7 @@
                         <td>
                             <img src="<?= base_url('assets/img/event/') . $ad['gambar']; ?>" class="img" height="100" width="100">
                         </td>
-                        <td><?= $ad['judul']; ?></td>
+                        <td><a href="<?= base_url(); ?>event/detail/<?= $ad['id']; ?>"><?= $ad['judul'];?></a></td>
                         <td><?= $ad['isi']; ?></td>
                         <td><?= $ad['date']; ?></td>
                         <td><?= $ad['time']; ?></td>

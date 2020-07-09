@@ -21,7 +21,7 @@
                             <img src="<?= base_url('assets/img/thread/elektro/') . $ad['gambar']; ?>" class="img" height="100" width="100">
                         </td>
                         <td><?= $ad['username']; ?></td>
-                        <td><?= $ad['nama_thread']; ?></td>
+                        <td><a href="<?= base_url(); ?>elektro/detail/<?= $ad['id_thread']; ?>"><?= $ad['nama_thread']; ?></a></td>
                         <td><?= $ad['isi']; ?></td>
                         <td><?= $ad['timestamp']; ?></td>
                         <td><a href="<?= base_url(); ?>admin/admin/hapusElektro/<?= $ad['id_thread']; ?>" class="badge badge-danger icofont-garbage" onclick="return confirm('Yakin?');">Hapus</a></td>

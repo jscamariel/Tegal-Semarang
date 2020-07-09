@@ -25,7 +25,7 @@
                             <img src="<?= base_url('assets/img/berita/') . $ad['gambar']; ?>" class="img" height="100" width="100">
                         </td>
 
-                        <td><?= $ad['judul']; ?></td>
+                        <td><a href="<?= base_url(); ?>berita/detail/<?= $ad['id']; ?>"><?= $ad['judul'];?></a></td>
                         <td><?= $ad['isi']; ?></td>
                         <td><?= $ad['timestamp']; ?></td>
                         <!-- <td><a href = "<?= base_url(); ?>admin/admin/hapusElektro/<?= $ad['id_thread']; ?>" class = "badge badge-danger" onclick="return confirm('Yakin?');">Hapus</a></td> -->

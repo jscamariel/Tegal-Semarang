@@ -21,7 +21,7 @@
                             <img src="<?= base_url('assets/img/thread/fib/') . $ad['gambar']; ?>" class="img" height="100" width="100">
                         </td>
                         <td><?= $ad['username']; ?></td>
-                        <td><?= $ad['nama_thread']; ?></td>
+                        <td><a href="<?= base_url(); ?>fib/detail/<?= $ad['id_thread']; ?>"><?= $ad['nama_thread']; ?></a></td>
                         <td><?= $ad['isi']; ?></td>
                         <td><?= $ad['timestamp']; ?></td>
                         <td><a href="<?= base_url(); ?>admin/admin/hapusFib/<?= $ad['id_thread']; ?>" class="badge badge-danger" onclick="return confirm('Yakin?');">Hapus</a></td>

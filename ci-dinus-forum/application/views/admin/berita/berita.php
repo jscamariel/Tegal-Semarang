@@ -25,14 +25,15 @@
                             <img src="<?= base_url('assets/img/berita/') . $ad['gambar']; ?>" class="img" height="100" width="100">
                         </td>
 
-                        <td><a href="<?= base_url(); ?>berita/detail/<?= $ad['id']; ?>"><?= $ad['judul'];?></a></td>
+                        <td><?= $ad['judul']; ?></td>
                         <td><?= $ad['isi']; ?></td>
                         <td><?= $ad['timestamp']; ?></td>
-                        <!-- <td><a href = "<?= base_url(); ?>admin/admin/hapusElektro/<?= $ad['id_thread']; ?>" class = "badge badge-danger" onclick="return confirm('Yakin?');">Hapus</a></td> -->
+                        <td><a href="<?= base_url(); ?>admin/admin/hapusBerita/<?= $ad['id']; ?>" class="icofont-trash btn btn-danger" onclick="return confirm('Yakin?');" title="Hapus"></a></td>
                     </tr>
                 </tbody>
             <?php endforeach; ?>
 
         </table>
+        <?= $this->pagination->create_links(); ?>
     </div>
 </div>

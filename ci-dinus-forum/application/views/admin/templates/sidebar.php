@@ -2,8 +2,6 @@
 
   <!-- Sidebar -->
   <div class="bg-light " id="sidebar-wrapper">
-    <div class="sidebar-heading">Dashboard</div>
-
     <div class="list-group list-group-flush">
       <a href="<?= base_url(); ?>admin/admin/akun" class="list-group-item list-group-item-action bg-light icofont-ui-user">Akun</a>
       <a href="<?= base_url(); ?>admin/admin/berita" class="list-group-item list-group-item-action bg-light icofont-newspaper">Berita</a>

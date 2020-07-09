@@ -12,7 +12,17 @@
                     <h6 class="card-subtitle mb-2 text-muted"><?= $home['timestamp'] ?></h6>
                     <img src="<?= base_url('assets/img/thread/home/') . $home['gambar']; ?>" class="card-img-top">
                     <p class="card-text"><?= $home['isi'] ?></p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
 
+                            <button class="btn button liked likebtn" data="<?= $home['id_thread'] ?>" title="Like"> Like</button>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn button  disliked dislikebtn" data="<?= $home['id_thread'] ?>" title="Dislike">Dislike</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -36,7 +46,7 @@
             <div class="card mt-1">
                 <div class="card-body">
 
-                    <h6 class="card-subtitle mb-2 text-muted"> Komentar </h6>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= $jumlah_komen; ?> Komentar </h6>
                     <?php foreach ($komentar as $komen) : ?>
 
                         <?php if ($komen['id_kategori'] != $home['id_kategori']) : ?>
@@ -72,3 +82,63 @@
         </div>
     </row>
 </div>
+
+
+<script>
+    $('.liked').click(function() {
+        id_thread = $(this).attr('data');
+        btn = $(this);
+
+
+        if (btn.hasClass('unlikebtn')) {
+            $.ajax({
+                url: '<?= base_url('home/unlike/') ?>' + id_thread,
+                success: function(result) {
+                    btn.html('<i class="far fa-thumbs-up">Like</i>');
+                    btn.removeClass('unlikebtn');
+                    btn.addClass('likebtn');
+                }
+            });
+        }
+
+        if (btn.hasClass('likebtn')) {
+            $.ajax({
+                url: '<?= base_url('home/like/') ?>' + id_thread,
+                success: function(result) {
+                    btn.html('<i class="fas fa-thumbs-up">Unlike</i>');
+                    btn.removeClass('likebtn');
+                    btn.addClass('unlikebtn');
+                }
+            });
+        }
+
+    });
+
+    $('.disliked').click(function() {
+        id_thread = $(this).attr('data');
+        btn = $(this);
+
+        if (btn.hasClass('undislikebtn')) {
+            $.ajax({
+                url: '<?= base_url('home/undislike/') ?>' + id_thread,
+                success: function(result) {
+                    btn.html('<i class="far fa-thumbs-down">Dislike</i>');
+                    btn.removeClass('undislikebtn');
+                    btn.addClass('dislikebtn');
+                }
+            });
+        }
+
+        if (btn.hasClass('dislikebtn')) {
+            $.ajax({
+                url: '<?= base_url('home/dislike/') ?>' + id_thread,
+                success: function(result) {
+                    btn.html('<i class="fas fa-thumbs-down">Undislike</i>');
+                    btn.removeClass('dislikebtn');
+                    btn.addClass('undislikebtn');
+                }
+            });
+        }
+
+    });
+</script>

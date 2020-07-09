@@ -136,6 +136,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 public void onClick(View v) {
                     Intent moving = new Intent(activity, DetailActivity.class);
                     moving.putExtra("id_thread",model.getId_thread());
+                    moving.putExtra("username", model.getUsername());
+                    moving.putExtra("nama_thread",model.getNama_thread());
+                    moving.putExtra("isi",model.getIsi());
+                    moving.putExtra("gambar",model.getGambar());
                     activity.startActivity(moving);
                 }
             });

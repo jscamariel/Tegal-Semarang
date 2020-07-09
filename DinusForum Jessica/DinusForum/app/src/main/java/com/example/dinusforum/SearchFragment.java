@@ -61,21 +61,24 @@ public class SearchFragment extends Fragment {
         fik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM FIK", Toast.LENGTH_SHORT).show();
+                Intent moving = new Intent(getActivity(),ForumFik.class);
+                startActivity(moving);
             }
         });
 
         feb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM FEB", Toast.LENGTH_SHORT).show();
+                Intent moving2 = new Intent(getActivity(),ForumFeb.class);
+                startActivity(moving2);
             }
         });
 
         fkes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM FKES", Toast.LENGTH_SHORT).show();
+                Intent moving4 = new Intent(getActivity(),ForumFkes.class);
+                startActivity(moving4);
             }
         });
 
@@ -89,49 +92,56 @@ public class SearchFragment extends Fragment {
         oto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM OTOMOTIF", Toast.LENGTH_SHORT).show();
+                Intent moving10 = new Intent(getActivity(),ForumOtomotif.class);
+                startActivity(moving10);
             }
         });
 
         alam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM PENCINTA ALAM", Toast.LENGTH_SHORT).show();
+                Intent moving8 = new Intent(getActivity(),ForumPecintaalam.class);
+                startActivity(moving8);
             }
         });
 
         hewan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM PENCINTA HEWAN", Toast.LENGTH_SHORT).show();
+                Intent moving9 = new Intent(getActivity(),ForumPecintahewan.class);
+                startActivity(moving9);
             }
         });
 
         foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM FOTOGRAFI", Toast.LENGTH_SHORT).show();
+                Intent moving6 = new Intent(getActivity(),ForumFotografi.class);
+                startActivity(moving6);
             }
         });
 
         game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM GAME", Toast.LENGTH_SHORT).show();
+                Intent moving7 = new Intent(getActivity(),ForumGame.class);
+                startActivity(moving7);
             }
         });
 
         olahraga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM OLAHRAGA", Toast.LENGTH_SHORT).show();
+                Intent moving5 = new Intent(getActivity(),ForumOlahraga.class);
+                startActivity(moving5);
             }
         });
 
         fib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "FORUM FIB", Toast.LENGTH_SHORT).show();
+                Intent moving3 = new Intent(getActivity(),ForumFib.class);
+                startActivity(moving3);
             }
         });
 

@@ -12,12 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +31,14 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     EditText editTextComment;
-    EditText editTextUsername;
-    EditText editTextNamaThread;
+    TextView editTextUsername;
+    TextView editTextNamaThread;
     ImageButton btnAddComment;
     String username, nama_thread, comment;
+
+    TextView detail_username, detail_nama_thread, detail_isi;
+    ImageView detail_gambar;
+    String detailUsername, detailNamaThread, detailIsi, detailGambar;
 
     RecyclerView RvComment;
     ArrayList<Comment> listComment;
@@ -47,19 +54,27 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         // let's set the statue bar to transparent
 
+        final DataUser user = SharedPrefManager.getInstance(this).getDataUser();
+
         // ini Views
         RvComment = findViewById(R.id.comment);
         editTextNamaThread = findViewById(R.id.nama_thread);
         editTextUsername = findViewById(R.id.username);
         editTextComment = findViewById(R.id.edit_comment);
         btnAddComment = findViewById(R.id.add_comment);
+        detail_username = findViewById(R.id.detail_username);
+        detail_nama_thread = findViewById(R.id.detail_nama_thread);
+        detail_isi =  findViewById(R.id.detail_isi);
+        detail_gambar = findViewById(R.id.detail_gambar);
 
         // add Comment button click listner
         btnAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                username = editTextUsername.getText().toString();
-                nama_thread = editTextNamaThread.getText().toString();
+                Intent data2 = getIntent();
+                username = user.getUsername();
+                nama_thread = data2.getStringExtra("nama_thread");
+
                 comment = editTextComment.getText().toString();
                 addComment();
 
@@ -84,6 +99,14 @@ public class DetailActivity extends AppCompatActivity {
         //intent
         Intent data = getIntent();
         id_thread =data.getStringExtra("id_thread");
+        detailUsername = data.getStringExtra("username");
+        detailNamaThread = data.getStringExtra("nama_thread");
+        detailIsi = data.getStringExtra("isi");
+        detailGambar = data.getStringExtra("gambar");
+        detail_username.setText(detailUsername);
+        detail_nama_thread.setText(detailNamaThread);
+        detail_isi.setText(detailIsi);
+        Picasso.get().load(detailGambar).into(detail_gambar);
         iniRvComment(id_thread);
 
         layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,false);
@@ -128,7 +151,7 @@ public class DetailActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError error) {
                         // handle error
-                        Toast.makeText(getApplicationContext(), "Error load 2",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Error load 2",Toast.LENGTH_LONG).show();
                     }
                 });
 

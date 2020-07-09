@@ -12,17 +12,24 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".ForumOtomotif"></activity>
+        <activity android:name=".ForumPecintahewan" />
+        <activity android:name=".ForumPecintaalam" />
+        <activity android:name=".ForumGame" />
+        <activity android:name=".ForumFotografi" />
+        <activity android:name=".ForumOlahraga" />
+        <activity android:name=".ForumFkes" />
+        <activity android:name=".ForumFib" />
+        <activity android:name=".ForumFeb" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".Register" />
         <activity android:name=".ForumFik" />
         <activity android:name=".EditData" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

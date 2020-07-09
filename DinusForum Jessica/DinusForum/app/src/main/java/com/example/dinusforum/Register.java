@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,7 +27,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    EditText editText_username, editText_nim , editText_email, editText_password , editText_id;
+    EditText editText_username, editText_nim , editText_email, editText_password ;
+    //EditText editText_id;
+    TextView create_account;
     Button btn_register;
 
     @Override
@@ -45,7 +48,8 @@ public class Register extends AppCompatActivity {
         editText_nim = findViewById(R.id.nim);
         editText_email = findViewById(R.id.email);
         editText_password = findViewById(R.id.password);
-        editText_id = findViewById(R.id.id);
+        //editText_id = findViewById(R.id.id);
+        create_account = findViewById(R.id.create_account);
 
         findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,10 +59,18 @@ public class Register extends AppCompatActivity {
                 registerUser();
             }
         });
+
+        create_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent keLogin = new Intent(getApplicationContext(),Login.class);
+                startActivity(keLogin);
+            }
+        });
     }
 
     private void registerUser() {
-        final String id = this.editText_id.getText().toString().trim();
+        //final String id = this.editText_id.getText().toString().trim();
         final String username = this.editText_username.getText().toString().trim();
         final String nim = this.editText_nim.getText().toString().trim();
         final String email = this.editText_email.getText().toString().trim();
@@ -128,7 +140,7 @@ public class Register extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Register error"+e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Silahkan kembali ke halaman login", Toast.LENGTH_SHORT).show();
                 }
             }
         },
@@ -141,7 +153,7 @@ public class Register extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("id",id);
+                //params.put("id",id);
                 params.put("username", username);
                 params.put("nim", nim);
                 params.put("email", email);
